@@ -63,8 +63,9 @@
   font-weight: 500;
   color: rgba(226, 232, 240, 0.82);
   text-decoration: none;
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2);
   border-radius: var(--radius-sm);
+  white-space: nowrap;
   transition: color var(--motion-fast) var(--motion-ease);
 }
 
@@ -72,8 +73,8 @@
 .link::after {
   content: '';
   position: absolute;
-  left: var(--space-3);
-  right: var(--space-3);
+  left: var(--space-2);
+  right: var(--space-2);
   bottom: 2px;
   height: 2px;
   border-radius: 2px;
@@ -162,7 +163,9 @@
   }
 }
 
-@media (min-width: 1080px) {
+/* 11 nav items + brand + CTA genuinely need this much room; below it the
+   hamburger is the honest answer rather than a cramped, wrapping bar. */
+@media (min-width: 1280px) {
   .desktopLinks {
     display: flex;
   }

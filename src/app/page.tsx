@@ -6,7 +6,7 @@ import { SessionCard } from '@/components/schedule/SessionCard';
 import { SpeakerCard } from '@/components/speakers/SpeakerCard';
 import { ActivityCard } from '@/components/activities/ActivityCard';
 import { HomeArchiveTeaser } from '@/components/home/HomeArchiveTeaser';
-import { QuantumOrb } from '@/components/home/QuantumOrb';
+import { GlobeVisual } from '@/components/home/GlobeVisual';
 import { StructuredData } from '@/components/shared/StructuredData';
 import { EmptyState } from '@/components/shared/EmptyState';
 import { CalendarIcon, MapPinIcon, MonitorIcon, ArrowRightIcon } from '@/components/shared/Icons';
@@ -133,7 +133,7 @@ export default function Home() {
 
           <div className={`${styles.heroAside} rise-in`} style={{ '--delay': '400ms' } as React.CSSProperties}>
             <div className={styles.orbHolder}>
-              <QuantumOrb />
+              <GlobeVisual />
             </div>
             <Countdown startDate={event.startDate} datesConfirmed={event.datesConfirmed} />
           </div>

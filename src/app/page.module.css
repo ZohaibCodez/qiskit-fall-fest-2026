@@ -9,7 +9,7 @@
   overflow: hidden;
   background: #070b18;
   color: #e2e8f0;
-  padding: clamp(48px, 8vw, 104px) 0 clamp(56px, 8vw, 96px);
+  padding: clamp(24px, 3.4vw, 48px) 0 clamp(40px, 5vw, 72px);
   isolation: isolate;
 }
 
@@ -179,6 +179,13 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-6);
+}
+
+/* Must be an explicit 100% — as a flex item under `align-items: center` it
+   would otherwise shrink to fit its content, collapsing the globe (which
+   sizes itself from this container's measured width) to zero. */
+.orbHolder {
+  width: 100%;
 }
 
 /* Desktop: content left, orb + countdown right. */

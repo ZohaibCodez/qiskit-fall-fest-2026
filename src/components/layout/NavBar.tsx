@@ -64,7 +64,7 @@ export function NavBar({ eventName }: { eventName: string }) {
         </nav>
 
         <div className={styles.actions}>
-          <RegisterButton onDark className={styles.registerCta} />
+          <RegisterButton onDark compact className={styles.registerCta} />
           <button
             type="button"
             className={styles.toggle}

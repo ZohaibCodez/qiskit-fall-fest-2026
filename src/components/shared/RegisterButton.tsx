@@ -10,7 +10,15 @@ import styles from './RegisterButton.module.css';
  * `onDark` only adjusts the disabled treatment, which would otherwise be
  * invisible against the dark hero.
  */
-export function RegisterButton({ className, onDark }: { className?: string; onDark?: boolean }) {
+export function RegisterButton({
+  className,
+  onDark,
+  compact,
+}: {
+  className?: string;
+  onDark?: boolean;
+  compact?: boolean;
+}) {
   const { status, url } = siteConfig.registration;
   const classes = [styles.button, onDark ? styles.onDark : '', className ?? ''].filter(Boolean).join(' ');
 
@@ -23,7 +31,11 @@ export function RegisterButton({ className, onDark }: { className?: string; onDa
     );
   }
 
-  const label = status === 'closed' ? 'Registration Closed' : 'Registration Opens Soon';
+  // Compact (nav) keeps the bar from being swallowed by a long label, while
+  // still never implying registration is open when it isn't.
+  const label = status === 'closed'
+    ? (compact ? 'Closed' : 'Registration Closed')
+    : (compact ? 'Coming Soon' : 'Registration Opens Soon');
   const title =
     status === 'closed'
       ? 'Registration for this event has closed.'

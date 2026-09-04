@@ -13,6 +13,13 @@ export interface SocialLink {
 }
 
 export interface SiteConfig {
+  seo: {
+    // Absolute site URL once a domain is chosen — required for correct
+    // canonical URLs, Open Graph tags, and sitemap.xml. Metadata/sitemap
+    // code falls back to relative behavior when this is null.
+    siteUrl: string | null;
+    ogImage: string | null;
+  };
   event: {
     name: string;
     chapterName: string;

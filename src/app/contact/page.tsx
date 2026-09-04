@@ -1,9 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/content';
 import { ExternalLink } from '@/components/shared/ExternalLink';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'Contact — Qiskit Fall Fest 2026' };
+export const metadata = pageMetadata(
+  'Contact',
+  'Get in touch with the Qiskit Fall Fest 2026 organizing team.',
+  '/contact',
+);
 
 export default function ContactPage() {
   const { contact, event } = siteConfig;

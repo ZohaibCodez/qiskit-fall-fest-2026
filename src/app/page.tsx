@@ -6,6 +6,8 @@ import { SessionCard } from '@/components/schedule/SessionCard';
 import { SpeakerCard } from '@/components/speakers/SpeakerCard';
 import { ActivityCard } from '@/components/activities/ActivityCard';
 import { HomeArchiveTeaser } from '@/components/home/HomeArchiveTeaser';
+import { StructuredData } from '@/components/shared/StructuredData';
+import { EmptyState } from '@/components/shared/EmptyState';
 import styles from './page.module.css';
 
 const FORMAT_LABELS: Record<string, string> = {
@@ -15,14 +17,57 @@ const FORMAT_LABELS: Record<string, string> = {
   tba: 'Format TBA',
 };
 
+/**
+ * Only emitted once there's something true to say — an Event schema built
+ * from TBA fields would be misleading structured data, not just an empty page.
+ */
+function buildEventSchema(event: typeof siteConfig.event, chapterName: string) {
+  const hasVenue = event.venue.name !== 'TBA';
+  const hasOnlineVenue = event.format === 'virtual' && Boolean(event.venue.onlineUrl);
+  if (!event.datesConfirmed || !event.startDate || !event.endDate || !(hasVenue || hasOnlineVenue)) {
+    return null;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.name,
+    description: event.description,
+    startDate: event.startDate,
+    endDate: event.endDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode:
+      event.format === 'virtual'
+        ? 'https://schema.org/OnlineEventAttendanceMode'
+        : event.format === 'hybrid'
+          ? 'https://schema.org/MixedEventAttendanceMode'
+          : 'https://schema.org/OfflineEventAttendanceMode',
+    location: hasOnlineVenue
+      ? { '@type': 'VirtualLocation', url: event.venue.onlineUrl }
+      : { '@type': 'Place', name: event.venue.name, address: event.venue.address },
+    organizer: { '@type': 'Organization', name: chapterName },
+  };
+}
+
 export default function Home() {
   const { event } = siteConfig;
   const featuredSessions = schedule.slice(0, 3);
   const featuredSpeakers = speakers.slice(0, 3);
   const featuredActivities = activities.filter((a) => a.status === 'planned').slice(0, 4);
 
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: event.chapterName,
+    url: siteConfig.seo.siteUrl ?? undefined,
+  };
+  const eventSchema = buildEventSchema(event, event.chapterName);
+
   return (
     <>
+      <StructuredData data={organizationSchema} />
+      {eventSchema && <StructuredData data={eventSchema} />}
+
       <section className={styles.hero}>
         <div className="container">
           <p className={styles.eyebrow}>{event.theme}</p>
@@ -58,11 +103,15 @@ export default function Home() {
           <div className={styles.sectionHead}>
             <h2>What to Expect</h2>
           </div>
-          <div className={styles.grid}>
-            {featuredActivities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} />
-            ))}
-          </div>
+          {featuredActivities.length === 0 ? (
+            <EmptyState message="Activities will be announced soon." />
+          ) : (
+            <div className={styles.grid}>
+              {featuredActivities.map((activity) => (
+                <ActivityCard key={activity.id} activity={activity} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -74,11 +123,15 @@ export default function Home() {
               Full schedule →
             </Link>
           </div>
-          <div className={styles.grid}>
-            {featuredSessions.map((session) => (
-              <SessionCard key={session.id} session={session} />
-            ))}
-          </div>
+          {featuredSessions.length === 0 ? (
+            <EmptyState message="The schedule will be announced soon." />
+          ) : (
+            <div className={styles.grid}>
+              {featuredSessions.map((session) => (
+                <SessionCard key={session.id} session={session} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -90,11 +143,15 @@ export default function Home() {
               All speakers →
             </Link>
           </div>
-          <div className={styles.grid}>
-            {featuredSpeakers.map((speaker) => (
-              <SpeakerCard key={speaker.id} speaker={speaker} />
-            ))}
-          </div>
+          {featuredSpeakers.length === 0 ? (
+            <EmptyState message="Speakers will be announced soon." />
+          ) : (
+            <div className={styles.grid}>
+              {featuredSpeakers.map((speaker) => (
+                <SpeakerCard key={speaker.id} speaker={speaker} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

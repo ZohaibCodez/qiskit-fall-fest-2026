@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "siteUrl": null,
+    "ogImage": null
+  },
   "event": {
     "name": "Qiskit Fall Fest 2026",
     "chapterName": "[Chapter Name TBA] — Qiskit Fall Fest 2026",

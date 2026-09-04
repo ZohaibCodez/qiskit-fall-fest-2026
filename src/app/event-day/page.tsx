@@ -1,12 +1,15 @@
-'use client';
-
 import { schedule, siteConfig, announcements, resources } from '@/lib/content';
-import { useEventPhase } from '@/lib/eventPhase';
-import { NowNextWidget } from '@/components/schedule/NowNextWidget';
+import { EventDayLive } from '@/components/schedule/EventDayLive';
 import { ExternalLink } from '@/components/shared/ExternalLink';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata(
+  'Event Day',
+  'Live schedule, room info, and announcements for Qiskit Fall Fest 2026.',
+  '/event-day',
+);
 
 export default function EventDayPage() {
-  const phase = useEventPhase();
   const { event, contact } = siteConfig;
   const workshopLinks = resources.filter((r) => r.category === 'workshop-materials' || r.category === 'challenge');
 
@@ -14,11 +17,7 @@ export default function EventDayPage() {
     <div className="container page-wrap" style={{ maxWidth: 800 }}>
       <h1>Event Day</h1>
 
-      {phase !== 'during' ? (
-        <p>Event-day information isn&apos;t live yet — check back once Qiskit Fall Fest 2026 begins.</p>
-      ) : (
-        <NowNextWidget schedule={schedule} />
-      )}
+      <EventDayLive schedule={schedule} />
 
       <h2 style={{ marginTop: 32 }}>Venue</h2>
       <p>

@@ -4,6 +4,7 @@ import { formatSessionDateTime } from '@/lib/format';
 import { PlaceholderAvatar } from '@/components/shared/PlaceholderAvatar';
 import { ExternalLink } from '@/components/shared/ExternalLink';
 import { StatusBadge } from '@/components/shared/StatusBadge';
+import { StructuredData } from '@/components/shared/StructuredData';
 import styles from './SpeakerCard.module.css';
 
 export function SpeakerCard({ speaker }: { speaker: Speaker }) {
@@ -13,6 +14,18 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
 
   return (
     <article className={styles.card}>
+      {!isTba && (
+        <StructuredData
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: speaker.name,
+            jobTitle: speaker.designation || undefined,
+            worksFor: speaker.organization ? { '@type': 'Organization', name: speaker.organization } : undefined,
+            description: speaker.bio || undefined,
+          }}
+        />
+      )}
       <PlaceholderAvatar src={speaker.photo} alt={name} size={72} />
       <div className={styles.body}>
         <h3 className={styles.name}>{name}</h3>

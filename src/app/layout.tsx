@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { EventPhaseProvider } from '@/lib/eventPhase';
 import { siteConfig } from '@/lib/content';
+import { pageMetadata } from '@/lib/seo';
 import { NavBar } from '@/components/layout/NavBar';
 import { Footer } from '@/components/layout/Footer';
 import { PhaseBanner } from '@/components/layout/PhaseBanner';
@@ -22,8 +23,11 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.event.name,
-  description: siteConfig.event.description,
+  ...pageMetadata(siteConfig.event.name, siteConfig.event.description, '/'),
+  metadataBase: siteConfig.seo.siteUrl ? new URL(siteConfig.seo.siteUrl) : undefined,
+  // Declared here rather than via app/icon.svg: Next's metadata-route loader
+  // fails to compile when the project path contains an apostrophe.
+  icons: { icon: '/favicon.svg' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

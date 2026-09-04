@@ -1,8 +1,12 @@
-import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/content';
 import { RegisterButton } from '@/components/shared/RegisterButton';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'Registration — Qiskit Fall Fest 2026' };
+export const metadata = pageMetadata(
+  'Registration',
+  'How to register for Qiskit Fall Fest 2026 — eligibility, deadline, cost, and setup requirements.',
+  '/registration',
+);
 
 export default function RegistrationPage() {
   const { registration, event } = siteConfig;

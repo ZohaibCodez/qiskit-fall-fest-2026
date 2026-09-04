@@ -1,20 +1,28 @@
-'use client';
-
 import { resources } from '@/lib/content';
-import { useEventPhase } from '@/lib/eventPhase';
 import { ResourceList } from '@/components/resources/ResourceList';
-import type { ResourceVisibility } from '@/lib/types';
+import { ResourcesAfterEvent } from '@/components/resources/ResourcesAfterEvent';
+import { EmptyState } from '@/components/shared/EmptyState';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata(
+  'Resources',
+  'Beginner quantum computing resources, Qiskit documentation, IBM Quantum, tutorials, and workshop material.',
+  '/resources',
+);
 
 export default function ResourcesPage() {
-  const phase = useEventPhase();
-  const visibility: ResourceVisibility[] = phase === 'after' ? ['always', 'after-event'] : ['always'];
-  const visible = resources.filter((r) => visibility.includes(r.visibleFrom));
+  const alwaysVisible = resources.filter((r) => r.visibleFrom === 'always');
 
   return (
     <div className="container page-wrap">
       <h1>Resources &amp; Learning Hub</h1>
       <p>Everything you need to learn quantum computing and Qiskit, before and after the event.</p>
-      <ResourceList resources={visible} />
+      {alwaysVisible.length === 0 ? (
+        <EmptyState message="Resources coming soon." />
+      ) : (
+        <ResourceList resources={alwaysVisible} />
+      )}
+      <ResourcesAfterEvent />
     </div>
   );
 }

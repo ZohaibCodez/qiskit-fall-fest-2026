@@ -1,7 +1,11 @@
-import type { Metadata } from 'next';
 import AboutIntro from '@content/pages/about-intro.mdx';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'About — Qiskit Fall Fest 2026' };
+export const metadata = pageMetadata(
+  'About',
+  'What Qiskit Fall Fest is, a beginner-friendly introduction to quantum computing, and this year’s theme: A Decade of Quantum on the Cloud.',
+  '/about',
+);
 
 export default function AboutPage() {
   return (

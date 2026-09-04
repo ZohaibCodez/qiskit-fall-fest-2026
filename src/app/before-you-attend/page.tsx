@@ -1,9 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/content';
 import { ExternalLink } from '@/components/shared/ExternalLink';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = { title: 'Before You Attend — Qiskit Fall Fest 2026' };
+export const metadata = pageMetadata(
+  'Before You Attend',
+  'What to prepare before Qiskit Fall Fest 2026 — required software, laptop setup, and event-day tips.',
+  '/before-you-attend',
+);
 
 export default function BeforeYouAttendPage() {
   const { contact } = siteConfig;

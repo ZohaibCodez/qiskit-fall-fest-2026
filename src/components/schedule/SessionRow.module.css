@@ -1,0 +1,58 @@
+/* Condensed list variant for the home page. The full SessionCard stays on
+   /schedule and in the event-day now/next widget. */
+.list {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row:hover {
+  background: var(--color-muted);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.speaker {
+  font-size: 13px;
+  color: var(--color-muted-fg);
+  margin: 2px 0 0;
+}
+
+.meta {
+  text-align: right;
+  flex-shrink: 0;
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--color-muted-fg);
+  line-height: 1.45;
+}
+
+.metaRoom {
+  display: block;
+  font-size: 12px;
+}

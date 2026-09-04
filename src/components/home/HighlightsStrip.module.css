@@ -1,0 +1,70 @@
+/* Sits in the light band below the hero (not overlapping it), matching the
+   reference composition. */
+.strip {
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(28px, 4vw, 44px);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.item:first-child {
+  border-top: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 2px;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Dividers become vertical once items sit side by side. */
+  .item {
+    border-top: 0;
+    border-left: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .item:nth-child(odd) {
+    border-left: 0;
+  }
+}
+
+@media (min-width: 1080px) {
+  .strip {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .item {
+    border-bottom: 0;
+    border-left: 1px solid var(--color-border);
+  }
+  .item:nth-child(odd) {
+    border-left: 1px solid var(--color-border);
+  }
+  .item:first-child {
+    border-left: 0;
+  }
+}

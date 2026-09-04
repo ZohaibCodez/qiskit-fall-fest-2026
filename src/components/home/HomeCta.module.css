@@ -1,0 +1,44 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(70% 120% at 8% 50%, rgba(79, 70, 229, 0.35), transparent 60%),
+    linear-gradient(120deg, #0a1024 0%, #101a3d 100%);
+  color: #e2e8f0;
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 48px);
+  flex-wrap: wrap;
+}
+
+.art {
+  color: #818cf8;
+  flex-shrink: 0;
+  display: none;
+}
+
+.body {
+  flex: 1;
+  min-width: 240px;
+}
+
+.title {
+  font-size: clamp(21px, 2.6vw, 28px);
+  color: #f8fafc;
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.015em;
+}
+
+.subtitle {
+  color: rgba(203, 213, 225, 0.82);
+  margin: 0;
+  font-size: 15px;
+}
+
+@media (min-width: 720px) {
+  .art {
+    display: block;
+  }
+}

@@ -1,0 +1,52 @@
+/* Centred card used in the home page's "What to Expect" grid. The detailed
+   ActivityCard (with planned / not-planned / TBA states) stays on /activities. */
+.tile {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+}
+
+/* Scales slightly with the card so the icon feels attached to it, not stamped on. */
+.tile:hover .iconWrap {
+  transform: scale(1.06);
+}
+
+.iconWrap {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15.5px;
+  margin: var(--space-1) 0 0;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-muted-fg);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.muted {
+  opacity: 0.62;
+}

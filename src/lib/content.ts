@@ -8,6 +8,7 @@ import faqJson from '@content/faq.json';
 import galleryJson from '@content/gallery.json';
 import testimonialsJson from '@content/testimonials.json';
 import announcementsJson from '@content/announcements.json';
+import highlightsJson from '@content/highlights.json';
 
 import type {
   SiteConfig,
@@ -20,6 +21,7 @@ import type {
   GalleryPhoto,
   Testimonial,
   Announcement,
+  Highlight,
   ResourceVisibility,
 } from './types';
 import { validateContent } from './validateContent';
@@ -34,6 +36,7 @@ export const faq = (faqJson as FaqEntry[]).slice().sort((a, b) => a.order - b.or
 export const gallery = galleryJson as GalleryPhoto[];
 export const testimonials = testimonialsJson as Testimonial[];
 export const announcements = announcementsJson as Announcement[];
+export const highlights = highlightsJson as Highlight[];
 
 // Runs once at module load. A dangling ID reference or invalid enum value
 // throws here, which fails `next build` — turning a content typo into a

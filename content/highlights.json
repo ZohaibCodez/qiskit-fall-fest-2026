@@ -1,0 +1,7 @@
+[
+  { "id": "hl-learn", "icon": "users", "title": "Learn", "description": "Beginner-friendly quantum computing sessions" },
+  { "id": "hl-build", "icon": "code", "title": "Build", "description": "Hands-on Qiskit workshops and challenges" },
+  { "id": "hl-connect", "icon": "chat", "title": "Connect", "description": "Network with peers, mentors and industry experts" },
+  { "id": "hl-explore", "icon": "cloud", "title": "Explore", "description": "Discover the power of quantum on the cloud" },
+  { "id": "hl-grow", "icon": "gift", "title": "Grow", "description": "Resources, knowledge and community opportunities" }
+]

@@ -239,22 +239,21 @@
 /* ---------- Sections below the fold ---------- */
 
 .section {
-  padding: clamp(48px, 7vw, 80px) 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: clamp(32px, 4vw, 52px) 0 0;
 }
 
 .sectionHead {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
   gap: var(--space-4);
   flex-wrap: wrap;
 }
 
 .sectionHead h2 {
   margin: 0;
-  font-size: clamp(22px, 3vw, 30px);
+  font-size: clamp(20px, 2.4vw, 26px);
   letter-spacing: -0.015em;
 }
 
@@ -262,6 +261,47 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-4);
+}
+
+/* Featured Speakers beside Featured Sessions — the two things a visitor
+   scans for first, kept in one screenful instead of stacked sections. */
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 40px);
+}
+
+.speakerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.expectGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-4);
+}
+
+.columnFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 1080px) {
+  .twoColumn {
+    grid-template-columns: 1fr 1fr;
+  }
+  .expectGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1079px) {
+  .expectGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .secondaryLink {
@@ -283,16 +323,5 @@
 }
 
 .ctaSection {
-  padding: clamp(56px, 8vw, 96px) 0;
-  text-align: center;
-}
-
-.ctaSection h2 {
-  font-size: clamp(24px, 3.4vw, 34px);
-  margin-bottom: var(--space-3);
-}
-
-.ctaSection p {
-  color: var(--color-muted-fg);
-  margin-bottom: var(--space-6);
+  padding: clamp(32px, 4vw, 52px) 0 clamp(36px, 4.5vw, 56px);
 }

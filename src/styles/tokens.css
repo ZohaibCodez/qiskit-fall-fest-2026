@@ -3,8 +3,15 @@
   Swap these values when real IBM/Qiskit Fall Fest brand assets arrive —
   every component reads these variables, never a raw hex, so a rebrand
   is a one-file edit.
+
+  This design deliberately commits to ONE look rather than following the
+  viewer's OS theme: a dark nav/hero and dark footer bracketing a light
+  content body. Those dark surfaces are painted with literal colors in their
+  own modules, so there is intentionally no prefers-color-scheme override
+  here — adding one would fight the composition, not adapt it.
 */
 :root {
+  color-scheme: light;
   --color-bg: #f8fafc;
   --color-fg: #0f172a;
   --color-primary: #0f172a;
@@ -42,17 +49,6 @@
   --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   --container-max: 1200px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0f172a;
-    --color-fg: #f8fafc;
-    --color-card: #1b2336;
-    --color-muted: #272f42;
-    --color-muted-fg: #94a3b8;
-    --color-border: #334155;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

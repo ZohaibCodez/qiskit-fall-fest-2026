@@ -1,64 +1,64 @@
 [
   {
     "id": "act-keynote",
-    "title": "Talks & Keynote Sessions",
+    "title": "Talks & Keynotes",
     "type": "keynote",
     "status": "planned",
-    "description": "Opening and closing talks framing the event and the 2026 theme, A Decade of Quantum on the Cloud.",
+    "description": "Opening and closing talks framing the event and the 2026 theme.",
     "timing": null,
     "sessionId": "sess-001"
   },
   {
     "id": "act-intro",
-    "title": "Beginner-Friendly Quantum Computing Introduction",
+    "title": "Beginner Sessions",
     "type": "talk",
     "status": "planned",
-    "description": "A no-prerequisites walkthrough of core quantum computing ideas for first-time attendees.",
+    "description": "A no-prerequisites walkthrough of core quantum ideas for first-timers.",
     "timing": null,
     "sessionId": "sess-002"
   },
   {
     "id": "act-workshop",
-    "title": "Hands-On Qiskit Workshop",
+    "title": "Hands-on Workshops",
     "type": "workshop",
     "status": "planned",
-    "description": "Guided, hands-on session writing and running quantum circuits with Qiskit.",
+    "description": "Guided sessions writing and running quantum circuits with Qiskit.",
     "timing": null,
     "sessionId": "sess-003"
   },
   {
     "id": "act-challenge",
-    "title": "Coding / Quantum Challenge",
+    "title": "Quantum Challenges",
     "type": "challenge",
     "status": "tba",
-    "description": "Details on whether a coding/quantum challenge will run this year are still being finalized.",
-    "timing": null,
-    "sessionId": null
-  },
-  {
-    "id": "act-panel",
-    "title": "Panel / Discussion",
-    "type": "panel",
-    "status": "not-planned",
-    "description": "Not part of this year's program.",
+    "description": "Whether a coding challenge runs this year is still being finalized.",
     "timing": null,
     "sessionId": null
   },
   {
     "id": "act-networking",
-    "title": "Networking & Social Activities",
+    "title": "Networking",
     "type": "networking",
     "status": "planned",
-    "description": "Casual time to meet other attendees, organizers, and speakers between sessions.",
+    "description": "Time to meet other attendees, organizers, and speakers between sessions.",
     "timing": null,
     "sessionId": null
   },
   {
     "id": "act-community",
-    "title": "Community Interaction & Demonstrations",
+    "title": "Community & Demos",
     "type": "demo",
     "status": "tba",
-    "description": "Details on community demos and team activities are still being finalized.",
+    "description": "Community demos and team activities are still being finalized.",
+    "timing": null,
+    "sessionId": null
+  },
+  {
+    "id": "act-panel",
+    "title": "Panel & Discussions",
+    "type": "panel",
+    "status": "not-planned",
+    "description": "Not part of this year's program.",
     "timing": null,
     "sessionId": null
   }

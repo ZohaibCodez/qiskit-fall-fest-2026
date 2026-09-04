@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import { siteConfig, schedule, speakers, activities } from '@/lib/content';
+import { siteConfig, schedule, speakers, activities, highlights } from '@/lib/content';
 import { RegisterButton } from '@/components/shared/RegisterButton';
 import { Countdown } from '@/components/shared/Countdown';
-import { SessionCard } from '@/components/schedule/SessionCard';
-import { SpeakerCard } from '@/components/speakers/SpeakerCard';
-import { ActivityCard } from '@/components/activities/ActivityCard';
+import { SessionRowList } from '@/components/schedule/SessionRow';
+import { SpeakerTile } from '@/components/speakers/SpeakerTile';
+import { ActivityTile } from '@/components/activities/ActivityTile';
+import { HighlightsStrip } from '@/components/home/HighlightsStrip';
+import { HomeCta } from '@/components/home/HomeCta';
 import { HomeArchiveTeaser } from '@/components/home/HomeArchiveTeaser';
 import { GlobeVisual } from '@/components/home/GlobeVisual';
 import { StructuredData } from '@/components/shared/StructuredData';
@@ -62,7 +64,9 @@ export default function Home() {
   const { event } = siteConfig;
   const featuredSessions = schedule.slice(0, 3);
   const featuredSpeakers = speakers.slice(0, 3);
-  const featuredActivities = activities.filter((a) => a.status === 'planned').slice(0, 4);
+  // Everything except activities explicitly ruled out for this year — a
+  // "not-planned" item has no place in a "what to expect" grid.
+  const expectActivities = activities.filter((a) => a.status !== 'not-planned').slice(0, 6);
 
   const [namePart, yearPart] = splitTrailingYear(event.name);
 
@@ -142,59 +146,71 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="container">
+        <HighlightsStrip highlights={highlights} />
+      </div>
+
+      <section className={styles.section}>
+        <div className={`container ${styles.twoColumn}`}>
+          <div>
+            <div className={styles.sectionHead}>
+              <h2>Featured Speakers</h2>
+              <Link href="/speakers" className={styles.secondaryLink}>
+                View all speakers
+                <ArrowRightIcon size={16} />
+              </Link>
+            </div>
+            {featuredSpeakers.length === 0 ? (
+              <EmptyState message="Speakers will be announced soon." />
+            ) : (
+              <div className={styles.speakerGrid}>
+                {featuredSpeakers.map((speaker) => (
+                  <SpeakerTile key={speaker.id} speaker={speaker} />
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <div className={styles.sectionHead}>
+              <h2>Featured Sessions</h2>
+              <Link href="/schedule" className={styles.secondaryLink}>
+                View full schedule
+                <ArrowRightIcon size={16} />
+              </Link>
+            </div>
+            {featuredSessions.length === 0 ? (
+              <EmptyState message="The schedule will be announced soon." />
+            ) : (
+              <>
+                <SessionRowList sessions={featuredSessions} />
+                <div className={styles.columnFooter}>
+                  <Link href="/schedule" className={styles.secondaryLink}>
+                    View full schedule
+                    <ArrowRightIcon size={16} />
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.section}>
         <div className="container">
           <div className={styles.sectionHead}>
             <h2>What to Expect</h2>
+            <Link href="/activities" className={styles.secondaryLink}>
+              All activities
+              <ArrowRightIcon size={16} />
+            </Link>
           </div>
-          {featuredActivities.length === 0 ? (
+          {expectActivities.length === 0 ? (
             <EmptyState message="Activities will be announced soon." />
           ) : (
-            <div className={styles.grid}>
-              {featuredActivities.map((activity) => (
-                <ActivityCard key={activity.id} activity={activity} />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className="container">
-          <div className={styles.sectionHead}>
-            <h2>Featured Sessions</h2>
-            <Link href="/schedule" className={styles.secondaryLink}>
-              Full schedule
-              <ArrowRightIcon size={16} />
-            </Link>
-          </div>
-          {featuredSessions.length === 0 ? (
-            <EmptyState message="The schedule will be announced soon." />
-          ) : (
-            <div className={styles.grid}>
-              {featuredSessions.map((session) => (
-                <SessionCard key={session.id} session={session} />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <div className="container">
-          <div className={styles.sectionHead}>
-            <h2>Featured Speakers</h2>
-            <Link href="/speakers" className={styles.secondaryLink}>
-              All speakers
-              <ArrowRightIcon size={16} />
-            </Link>
-          </div>
-          {featuredSpeakers.length === 0 ? (
-            <EmptyState message="Speakers will be announced soon." />
-          ) : (
-            <div className={styles.grid}>
-              {featuredSpeakers.map((speaker) => (
-                <SpeakerCard key={speaker.id} speaker={speaker} />
+            <div className={styles.expectGrid}>
+              {expectActivities.map((activity) => (
+                <ActivityTile key={activity.id} activity={activity} />
               ))}
             </div>
           )}
@@ -205,9 +221,7 @@ export default function Home() {
 
       <section className={styles.ctaSection}>
         <div className="container">
-          <h2>Ready to join us?</h2>
-          <p>Registration is {siteConfig.registration.cost.toLowerCase()} — secure your spot today.</p>
-          <RegisterButton />
+          <HomeCta />
         </div>
       </section>
     </>

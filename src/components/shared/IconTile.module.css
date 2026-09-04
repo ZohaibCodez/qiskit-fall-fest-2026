@@ -1,0 +1,62 @@
+/* Tinted icon container shared by the highlights strip, session rows and
+   activity cards, so one accent scale drives all three. */
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rounded {
+  border-radius: var(--radius-md);
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.sm {
+  width: 38px;
+  height: 38px;
+}
+
+.md {
+  width: 44px;
+  height: 44px;
+}
+
+.lg {
+  width: 60px;
+  height: 60px;
+}
+
+.blue {
+  background: #e0edff;
+  color: #1d4ed8;
+}
+
+.violet {
+  background: #ece7ff;
+  color: #6d28d9;
+}
+
+.green {
+  background: #dcfae7;
+  color: #047857;
+}
+
+.amber {
+  background: #fef1d8;
+  color: #b45309;
+}
+
+.pink {
+  background: #fde4ef;
+  color: #be1259;
+}
+
+.cyan {
+  background: #d6f3fb;
+  color: #0e6f8c;
+}
+

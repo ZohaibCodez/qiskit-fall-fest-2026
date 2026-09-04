@@ -189,6 +189,16 @@ export interface Testimonial {
   photo: string | null;
 }
 
+export type HighlightIcon = 'users' | 'code' | 'chat' | 'cloud' | 'gift' | 'trophy' | 'sparkles';
+
+/** The short "what this event gives you" strip under the hero. */
+export interface Highlight {
+  id: string;
+  icon: HighlightIcon;
+  title: string;
+  description: string;
+}
+
 export type AnnouncementPriority = 'normal' | 'urgent';
 
 export interface Announcement {

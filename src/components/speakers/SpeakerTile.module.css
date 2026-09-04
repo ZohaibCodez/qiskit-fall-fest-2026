@@ -4,12 +4,12 @@
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-5) var(--space-3);
+  padding: var(--space-4) var(--space-3);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   transition:
     transform var(--motion-fast) var(--motion-ease),
     box-shadow var(--motion-fast) var(--motion-ease),
@@ -23,11 +23,11 @@
 }
 
 .status {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--color-accent);
-  margin: var(--space-1) 0 0;
+  margin: var(--space-2) 0 0;
 }
 
 .name {
@@ -42,8 +42,11 @@
   margin: 0;
 }
 
+/* Pushes the pill to the card's bottom edge so pills line up across the row
+   even when names/affiliations wrap to different heights. */
 .pill {
-  margin-top: var(--space-2);
+  margin-top: auto;
+  align-self: center;
   font-size: 12px;
   font-weight: 600;
   padding: 4px var(--space-3);

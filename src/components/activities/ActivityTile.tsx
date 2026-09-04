@@ -38,8 +38,11 @@ export function ActivityTile({ activity }: { activity: Activity }) {
       </span>
       <p className={styles.title}>{activity.title}</p>
       <p className={styles.description}>{activity.description}</p>
-      {isNotPlanned && <StatusBadge tone="notPlanned" />}
-      {activity.status === 'tba' && <StatusBadge tone="tba" />}
+      {(isNotPlanned || activity.status === 'tba') && (
+        <span className={styles.badge}>
+          <StatusBadge tone={isNotPlanned ? 'notPlanned' : 'tba'} />
+        </span>
+      )}
     </article>
   );
 }

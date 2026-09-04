@@ -47,6 +47,13 @@
   text-wrap: pretty;
 }
 
+/* Only some tiles carry a TBA badge; pinning it to the bottom keeps every
+   card's body aligned instead of leaving the badge-less ones bottom-heavy. */
+.badge {
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
 .muted {
   opacity: 0.62;
 }

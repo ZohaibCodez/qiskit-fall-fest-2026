@@ -30,8 +30,9 @@ function SessionRow({ session }: { session: Session }) {
   const visual = TYPE_VISUALS[session.type] ?? TYPE_VISUALS.other;
   const speakers = getSpeakersForSession(session.id);
   const speakerLabel = speakers.length
-    ? speakers.map((s) => (s.status === 'tba' ? 'TBA' : s.name)).join(', ')
-    : 'TBA';
+    ? speakers.map((s) => (s.status === 'tba' ? 'Speaker TBA' : s.name)).join(', ')
+    : 'Speaker TBA';
+  const room = session.location.isOnline ? 'Online' : session.location.room;
 
   return (
     <div className={styles.row}>
@@ -43,8 +44,12 @@ function SessionRow({ session }: { session: Session }) {
         <p className={styles.speaker}>{speakerLabel}</p>
       </div>
       <div className={styles.meta}>
-        {session.startTime ? formatSessionTime(session.startTime) : 'TBA'}
-        <span className={styles.metaRoom}>{session.location.room || 'TBA'}</span>
+        <span className={styles.metaTime}>
+          {session.startTime ? formatSessionTime(session.startTime) : 'TBA'}
+        </span>
+        {/* Only show the room when it's actually known — otherwise the row
+            reads as a meaningless "TBA / TBA". */}
+        {room && room !== 'TBA' && <span className={styles.metaRoom}>{room}</span>}
       </div>
     </div>
   );

@@ -182,15 +182,7 @@ export default function Home() {
             {featuredSessions.length === 0 ? (
               <EmptyState message="The schedule will be announced soon." />
             ) : (
-              <>
-                <SessionRowList sessions={featuredSessions} />
-                <div className={styles.columnFooter}>
-                  <Link href="/schedule" className={styles.secondaryLink}>
-                    View full schedule
-                    <ArrowRightIcon size={16} />
-                  </Link>
-                </div>
-              </>
+              <SessionRowList sessions={featuredSessions} />
             )}
           </div>
         </div>

@@ -25,7 +25,7 @@ export function SpeakerTile({ speaker }: { speaker: Speaker }) {
 
   return (
     <article className={styles.tile}>
-      <PlaceholderAvatar src={speaker.photo} alt={name} size={80} />
+      <PlaceholderAvatar src={speaker.photo} alt={name} size={64} />
       {isTba && <p className={styles.status}>TBA</p>}
       <p className={styles.name}>{name}</p>
       <p className={styles.affiliation}>{affiliation || 'Affiliation TBA'}</p>

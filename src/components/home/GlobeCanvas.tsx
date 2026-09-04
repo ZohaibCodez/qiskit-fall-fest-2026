@@ -11,59 +11,110 @@ import * as THREE from 'three';
  * so the hero text paints before the 3D payload arrives.
  */
 
-type Node = { lat: number; lng: number };
+type Node = { lat: number; lng: number; color: string; radius: number };
 
-// Fixed set (not Math.random) so every visitor sees the same composition and
-// the arcs don't reshuffle between renders.
-const NODES: Node[] = [
-  { lat: 40.71, lng: -74.01 },
-  { lat: 51.51, lng: -0.13 },
-  { lat: 35.68, lng: 139.69 },
-  { lat: -33.87, lng: 151.21 },
-  { lat: 37.77, lng: -122.42 },
-  { lat: 1.35, lng: 103.82 },
-  { lat: 52.52, lng: 13.4 },
-  { lat: 19.08, lng: 72.88 },
-  { lat: -23.55, lng: -46.63 },
-  { lat: 30.04, lng: 31.24 },
-  { lat: 55.75, lng: 37.62 },
-  { lat: 24.86, lng: 67.01 },
+const NODE_COUNT = 46;
+const NEIGHBORS_PER_NODE = 2;
+
+const NODE_COLORS = ['#ffffff', '#a5b4fc', '#7dd3fc', '#c4b5fd', '#60a5fa'];
+const ARC_COLORS: Array<[string, string]> = [
+  ['#818cf8', '#38bdf8'],
+  ['#c4b5fd', '#818cf8'],
+  ['#7dd3fc', '#a5b4fc'],
 ];
 
-const ARC_PAIRS: Array<[number, number]> = [
-  [0, 1], [1, 6], [6, 7], [7, 5], [5, 2], [2, 3],
-  [4, 0], [8, 0], [9, 1], [10, 6], [11, 5], [7, 9],
-];
+const toRad = Math.PI / 180;
 
-const ACCENT = '#818cf8';
-const ACCENT_2 = '#38bdf8';
+/**
+ * Fibonacci-sphere distribution: evenly spreads nodes over the globe with no
+ * clustering and — critically — no Math.random, so the composition is identical
+ * for every visitor and every render.
+ */
+function buildNodes(): Node[] {
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  return Array.from({ length: NODE_COUNT }, (_, i) => {
+    const y = 1 - (i / (NODE_COUNT - 1)) * 2;
+    const ringRadius = Math.sqrt(Math.max(0, 1 - y * y));
+    const theta = golden * i;
+    const x = Math.cos(theta) * ringRadius;
+    const z = Math.sin(theta) * ringRadius;
+
+    return {
+      lat: Math.asin(y) / toRad,
+      lng: Math.atan2(z, x) / toRad,
+      color: NODE_COLORS[i % NODE_COLORS.length],
+      // Deterministic size variation so the mesh reads as depth, not noise.
+      radius: 0.2 + ((i * 7) % 5) * 0.055,
+    };
+  });
+}
+
+function unitVector({ lat, lng }: Node) {
+  const phi = lat * toRad;
+  const lambda = lng * toRad;
+  return [Math.cos(phi) * Math.cos(lambda), Math.sin(phi), Math.cos(phi) * Math.sin(lambda)];
+}
+
+/** Links each node to its nearest neighbours, so the arcs read as a real network rather than random chords. */
+function buildArcs(nodes: Node[]) {
+  const vectors = nodes.map(unitVector);
+  const seen = new Set<string>();
+  const arcs: Array<{
+    startLat: number;
+    startLng: number;
+    endLat: number;
+    endLng: number;
+    color: [string, string];
+    dashInitialGap: number;
+  }> = [];
+
+  nodes.forEach((node, i) => {
+    const distances = nodes
+      .map((_, j) => ({
+        j,
+        dot: vectors[i][0] * vectors[j][0] + vectors[i][1] * vectors[j][1] + vectors[i][2] * vectors[j][2],
+      }))
+      .filter(({ j }) => j !== i)
+      .sort((a, b) => b.dot - a.dot)
+      .slice(0, NEIGHBORS_PER_NODE);
+
+    distances.forEach(({ j }) => {
+      const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      arcs.push({
+        startLat: node.lat,
+        startLng: node.lng,
+        endLat: nodes[j].lat,
+        endLng: nodes[j].lng,
+        color: ARC_COLORS[arcs.length % ARC_COLORS.length],
+        // Staggered so the dashes don't all travel in lockstep.
+        dashInitialGap: (arcs.length % 9) / 9,
+      });
+    });
+  });
+
+  return arcs;
+}
 
 export default function GlobeCanvas({ size }: { size: number }) {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
 
-  const arcs = useMemo(
-    () =>
-      ARC_PAIRS.map(([a, b]) => ({
-        startLat: NODES[a].lat,
-        startLng: NODES[a].lng,
-        endLat: NODES[b].lat,
-        endLng: NODES[b].lng,
-        color: [ACCENT, ACCENT_2] as [string, string],
-      })),
-    [],
-  );
+  const nodes = useMemo(buildNodes, []);
+  const arcs = useMemo(() => buildArcs(nodes), [nodes]);
 
-  // Translucent and self-lit: the graticule grid and arcs read as the surface,
-  // rather than a photographic earth, matching the hero's abstract feel.
+  // Lit blue sphere rather than a photographic earth — the arc mesh and
+  // atmosphere carry the visual, the surface just gives them something to sit on.
   const globeMaterial = useMemo(
     () =>
       new THREE.MeshPhongMaterial({
-        color: new THREE.Color('#0b1030'),
-        emissive: new THREE.Color('#221f57'),
-        emissiveIntensity: 0.6,
+        color: new THREE.Color('#0b2a7a'),
+        emissive: new THREE.Color('#1e3a8a'),
+        emissiveIntensity: 0.85,
         transparent: true,
-        opacity: 0.9,
-        shininess: 6,
+        opacity: 0.95,
+        shininess: 14,
+        specular: new THREE.Color('#3b82f6'),
       }),
     [],
   );
@@ -77,9 +128,11 @@ export default function GlobeCanvas({ size }: { size: number }) {
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.autoRotate = !prefersReduced;
-    controls.autoRotateSpeed = 0.55;
+    controls.autoRotateSpeed = 0.5;
 
-    globe.pointOfView({ lat: 18, lng: 20, altitude: 2.3 });
+    // Close enough to fill its box like the reference, but not so close that
+    // the atmosphere glow reaches the square canvas edge and clips.
+    globe.pointOfView({ lat: 12, lng: 20, altitude: 2.05 });
   };
 
   return (
@@ -93,24 +146,26 @@ export default function GlobeCanvas({ size }: { size: number }) {
       showGlobe
       showGraticules
       showAtmosphere
-      atmosphereColor={ACCENT}
-      atmosphereAltitude={0.26}
+      atmosphereColor="#4f7cff"
+      atmosphereAltitude={0.3}
       arcsData={arcs}
       arcColor="color"
-      arcAltitudeAutoScale={0.42}
-      arcStroke={0.45}
-      arcDashLength={0.42}
-      arcDashGap={0.6}
-      arcDashAnimateTime={3800}
-      pointsData={NODES}
-      pointColor={() => '#c4b5fd'}
-      pointAltitude={0.012}
-      pointRadius={0.32}
-      ringsData={NODES.filter((_, i) => i % 3 === 0)}
-      ringColor={() => (t: number) => `rgba(129, 140, 248, ${1 - t})`}
-      ringMaxRadius={4.5}
-      ringPropagationSpeed={1.4}
-      ringRepeatPeriod={2600}
+      arcAltitudeAutoScale={0.52}
+      arcStroke={0.32}
+      arcDashLength={0.5}
+      arcDashGap={0.22}
+      arcDashInitialGap="dashInitialGap"
+      arcDashAnimateTime={5200}
+      pointsData={nodes}
+      pointColor="color"
+      pointAltitude={0.015}
+      pointRadius="radius"
+      pointResolution={8}
+      ringsData={nodes.filter((_, i) => i % 6 === 0)}
+      ringColor={() => (t: number) => `rgba(147, 197, 253, ${1 - t})`}
+      ringMaxRadius={5}
+      ringPropagationSpeed={1.2}
+      ringRepeatPeriod={2800}
     />
   );
 }

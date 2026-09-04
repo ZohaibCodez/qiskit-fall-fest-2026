@@ -1,11 +1,13 @@
+/* Floats over the globe on desktop, so it needs enough backdrop blur and
+   contrast to stay readable against the moving arcs behind it. */
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(9, 14, 34, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-6);
-  backdrop-filter: blur(8px);
+  padding: var(--space-4) var(--space-5);
+  backdrop-filter: blur(16px) saturate(140%);
   width: 100%;
-  max-width: 460px;
+  max-width: 420px;
 }
 
 .heading {

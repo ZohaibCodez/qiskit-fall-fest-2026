@@ -135,7 +135,9 @@ export default function Home() {
             <div className={styles.orbHolder}>
               <GlobeVisual />
             </div>
-            <Countdown startDate={event.startDate} datesConfirmed={event.datesConfirmed} />
+            <div className={styles.countdownHolder}>
+              <Countdown startDate={event.startDate} datesConfirmed={event.datesConfirmed} />
+            </div>
           </div>
         </div>
       </section>

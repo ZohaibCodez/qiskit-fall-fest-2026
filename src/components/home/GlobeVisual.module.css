@@ -1,7 +1,7 @@
 .wrap {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 620px;
   aspect-ratio: 1;
   margin-inline: auto;
   /* Decorative: never let it swallow scroll/drag gestures on touch devices. */
@@ -9,13 +9,23 @@
 }
 
 /* Soft bloom behind the canvas — the atmosphere shader alone reads thin
-   against a near-black hero. */
+   against a near-black hero.
+   `closest-side` matters: the default (farthest-corner) sizing means the
+   gradient is still opaque where it meets the box's edge midpoints, which
+   clips into visible straight lines. Sized to the closest side and fully
+   transparent well before the boundary, it fades out cleanly. */
 .bloom {
   position: absolute;
-  inset: 6%;
+  inset: 10%;
   border-radius: 50%;
-  background: radial-gradient(circle at 42% 38%, rgba(139, 92, 246, 0.42), rgba(56, 189, 248, 0.16) 46%, transparent 70%);
-  filter: blur(28px);
+  background: radial-gradient(
+    circle closest-side at 50% 46%,
+    rgba(59, 130, 246, 0.5) 0%,
+    rgba(99, 102, 241, 0.22) 46%,
+    rgba(99, 102, 241, 0.06) 68%,
+    transparent 84%
+  );
+  filter: blur(26px);
   z-index: 0;
 }
 
@@ -29,6 +39,10 @@
   height: 100%;
   opacity: 0;
   animation: globe-in 900ms var(--motion-ease) 200ms forwards;
+  /* The canvas is square while the glow is round, so any atmosphere reaching
+     the edge cuts off as a straight line. Feather the last few percent. */
+  mask-image: radial-gradient(circle closest-side, #000 88%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 88%, transparent 100%);
 }
 
 /* Reserves the same box while the WebGL chunk loads, so nothing shifts. */

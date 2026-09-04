@@ -1,0 +1,18 @@
+.group {
+  margin-bottom: var(--space-8);
+}
+
+.groupTitle {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 14px;
+  color: var(--color-muted-fg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

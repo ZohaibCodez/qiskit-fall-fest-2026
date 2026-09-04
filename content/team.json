@@ -1,0 +1,8 @@
+[
+  { "id": "team-001", "role": "Lead Organizer", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null },
+  { "id": "team-002", "role": "Co-Organizer", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null },
+  { "id": "team-003", "role": "Website & Docs Lead", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null },
+  { "id": "team-004", "role": "Marketing & Outreach Lead", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null },
+  { "id": "team-005", "role": "Event Operations Lead", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null },
+  { "id": "team-006", "role": "Audience & Participant Lead", "status": "tba", "name": "TBA", "photo": null, "socialUrl": null }
+]

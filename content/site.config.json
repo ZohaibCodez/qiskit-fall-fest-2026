@@ -1,0 +1,35 @@
+{
+  "event": {
+    "name": "Qiskit Fall Fest 2026",
+    "chapterName": "[Chapter Name TBA] — Qiskit Fall Fest 2026",
+    "theme": "A Decade of Quantum on the Cloud",
+    "description": "Qiskit Fall Fest 2026 is our chapter's local celebration of a decade of quantum computing on the cloud — talks, hands-on Qiskit workshops, and community for anyone curious about quantum, no experience required.",
+    "format": "tba",
+    "startDate": null,
+    "endDate": null,
+    "datesConfirmed": false,
+    "venue": {
+      "name": "TBA",
+      "address": "TBA",
+      "mapUrl": null,
+      "onlineUrl": null
+    }
+  },
+  "registration": {
+    "status": "coming-soon",
+    "url": null,
+    "deadline": null,
+    "cost": "Free",
+    "notes": "Registration details will be posted here once finalized."
+  },
+  "phaseOverride": null,
+  "contact": {
+    "email": "TBA",
+    "communityUrl": null,
+    "socials": []
+  },
+  "archive": {
+    "attendeesCount": null,
+    "finalReportUrl": null
+  }
+}

@@ -1,0 +1,39 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.tba {
+  background: var(--color-muted);
+  color: var(--color-muted-fg);
+  border-color: var(--color-border);
+}
+
+.notPlanned {
+  background: transparent;
+  color: var(--color-muted-fg);
+  border-color: var(--color-border);
+}
+
+.open {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.closed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.info {
+  background: var(--color-muted);
+  color: var(--color-accent);
+}

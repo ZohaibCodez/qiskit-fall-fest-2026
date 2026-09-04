@@ -1,0 +1,29 @@
+.wrap {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.slotLabel {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted-fg);
+}
+
+.empty {
+  color: var(--color-muted-fg);
+  font-size: 14px;
+}

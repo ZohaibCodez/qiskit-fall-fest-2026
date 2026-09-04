@@ -1,0 +1,48 @@
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  gap: var(--space-4);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0;
+}
+
+.designation {
+  font-size: 14px;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+.bio {
+  font-size: 14px;
+  margin: var(--space-2) 0 0;
+}
+
+.session {
+  font-size: 13px;
+  color: var(--color-accent);
+  margin-top: var(--space-1);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.socials a {
+  font-size: 13px;
+}

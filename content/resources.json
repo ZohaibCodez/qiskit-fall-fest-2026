@@ -1,0 +1,50 @@
+[
+  {
+    "id": "res-001",
+    "category": "beginner-quantum",
+    "title": "IBM Quantum Learning — Basics of Quantum Information",
+    "url": "https://learning.quantum.ibm.com/",
+    "description": "IBM's free, self-paced courses for learning quantum computing from the ground up.",
+    "visibleFrom": "always"
+  },
+  {
+    "id": "res-002",
+    "category": "qiskit-docs",
+    "title": "Qiskit Documentation",
+    "url": "https://docs.quantum.ibm.com/",
+    "description": "Official Qiskit documentation, API reference, and guides.",
+    "visibleFrom": "always"
+  },
+  {
+    "id": "res-003",
+    "category": "ibm-quantum",
+    "title": "IBM Quantum Platform",
+    "url": "https://quantum.ibm.com/",
+    "description": "Access real quantum hardware and simulators through IBM Quantum.",
+    "visibleFrom": "always"
+  },
+  {
+    "id": "res-004",
+    "category": "github-repos",
+    "title": "Qiskit on GitHub",
+    "url": "https://github.com/Qiskit",
+    "description": "Source code, sample notebooks, and community projects for Qiskit.",
+    "visibleFrom": "always"
+  },
+  {
+    "id": "res-005",
+    "category": "workshop-materials",
+    "title": "Workshop Notebooks & Slides",
+    "url": "",
+    "description": "Notebooks and slides from this event's hands-on workshop — posted here once finalized.",
+    "visibleFrom": "always"
+  },
+  {
+    "id": "res-006",
+    "category": "recordings",
+    "title": "Session Recordings",
+    "url": "",
+    "description": "Recordings of talks and workshops, published after the event.",
+    "visibleFrom": "after-event"
+  }
+]

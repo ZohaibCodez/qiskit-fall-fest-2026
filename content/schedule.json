@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sess-001",
+    "title": "Opening & Welcome",
+    "type": "keynote",
+    "status": "tba",
+    "startTime": null,
+    "endTime": null,
+    "durationMinutes": 30,
+    "description": "Kickoff and welcome to Qiskit Fall Fest 2026 — an overview of the day and what to expect.",
+    "speakerIds": [],
+    "location": { "room": "TBA", "isOnline": false, "onlineUrl": null }
+  },
+  {
+    "id": "sess-002",
+    "title": "Beginner-Friendly Introduction to Quantum Computing",
+    "type": "talk",
+    "status": "tba",
+    "startTime": null,
+    "endTime": null,
+    "durationMinutes": 45,
+    "description": "A gentle, no-prerequisites introduction to quantum computing concepts for newcomers.",
+    "speakerIds": [],
+    "location": { "room": "TBA", "isOnline": false, "onlineUrl": null }
+  },
+  {
+    "id": "sess-003",
+    "title": "Hands-On Qiskit Workshop",
+    "type": "workshop",
+    "status": "tba",
+    "startTime": null,
+    "endTime": null,
+    "durationMinutes": 90,
+    "description": "Bring a laptop and write your first quantum circuits with Qiskit.",
+    "speakerIds": [],
+    "location": { "room": "TBA", "isOnline": false, "onlineUrl": null }
+  }
+]

@@ -1,0 +1,21 @@
+.group {
+  margin-bottom: var(--space-8);
+}
+
+.groupTitle {
+  font-size: 18px;
+  text-transform: capitalize;
+  margin-bottom: var(--space-3);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.caption {
+  font-size: 13px;
+  color: var(--color-muted-fg);
+  margin-top: var(--space-1);
+}

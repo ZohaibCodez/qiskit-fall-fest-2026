@@ -1,0 +1,8 @@
+[
+  { "id": "gal-opening-1", "category": "opening", "src": null, "caption": null, "status": "placeholder" },
+  { "id": "gal-sessions-1", "category": "sessions", "src": null, "caption": null, "status": "placeholder" },
+  { "id": "gal-workshop-1", "category": "workshop", "src": null, "caption": null, "status": "placeholder" },
+  { "id": "gal-participants-1", "category": "participants", "src": null, "caption": null, "status": "placeholder" },
+  { "id": "gal-networking-1", "category": "networking", "src": null, "caption": null, "status": "placeholder" },
+  { "id": "gal-closing-1", "category": "closing", "src": null, "caption": null, "status": "placeholder" }
+]

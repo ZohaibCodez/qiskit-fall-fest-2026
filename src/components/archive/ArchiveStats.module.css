@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-4);
+}
+
+.stat {
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.value {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 28px;
+  font-weight: 600;
+  display: block;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--color-muted-fg);
+}

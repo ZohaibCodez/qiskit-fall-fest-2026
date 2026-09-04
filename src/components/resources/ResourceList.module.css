@@ -1,0 +1,37 @@
+.group {
+  margin-bottom: var(--space-8);
+}
+
+.groupTitle {
+  font-size: 18px;
+  margin-bottom: var(--space-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.item {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.itemTitle {
+  font-weight: 600;
+  display: block;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--color-muted-fg);
+  margin: var(--space-1) 0 0;
+}
+
+.comingSoon {
+  color: var(--color-muted-fg);
+  font-style: italic;
+}

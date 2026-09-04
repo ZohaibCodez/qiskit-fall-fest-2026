@@ -6,16 +6,25 @@ import { SessionCard } from '@/components/schedule/SessionCard';
 import { SpeakerCard } from '@/components/speakers/SpeakerCard';
 import { ActivityCard } from '@/components/activities/ActivityCard';
 import { HomeArchiveTeaser } from '@/components/home/HomeArchiveTeaser';
+import { QuantumOrb } from '@/components/home/QuantumOrb';
 import { StructuredData } from '@/components/shared/StructuredData';
 import { EmptyState } from '@/components/shared/EmptyState';
+import { CalendarIcon, MapPinIcon, MonitorIcon, ArrowRightIcon } from '@/components/shared/Icons';
+import { formatSessionDateTime } from '@/lib/format';
 import styles from './page.module.css';
 
 const FORMAT_LABELS: Record<string, string> = {
   'in-person': 'In-Person',
   virtual: 'Virtual',
   hybrid: 'Hybrid',
-  tba: 'Format TBA',
+  tba: 'TBA',
 };
+
+/** Splits a trailing year off the event name so it can be styled separately. */
+function splitTrailingYear(name: string): [string, string | null] {
+  const match = /^(.*?)\s+(\d{4})$/.exec(name);
+  return match ? [match[1], match[2]] : [name, null];
+}
 
 /**
  * Only emitted once there's something true to say — an Event schema built
@@ -55,6 +64,8 @@ export default function Home() {
   const featuredSpeakers = speakers.slice(0, 3);
   const featuredActivities = activities.filter((a) => a.status === 'planned').slice(0, 4);
 
+  const [namePart, yearPart] = splitTrailingYear(event.name);
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -69,31 +80,62 @@ export default function Home() {
       {eventSchema && <StructuredData data={eventSchema} />}
 
       <section className={styles.hero}>
-        <div className="container">
-          <p className={styles.eyebrow}>{event.theme}</p>
-          <h1 className={styles.title}>{event.name}</h1>
-          <p className={styles.lede}>{event.description}</p>
+        <div className={styles.heroBackdrop} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
 
-          <div className={styles.metaRow}>
-            <span>{FORMAT_LABELS[event.format]}</span>
-            <span>·</span>
-            <span>{event.venue.name}</span>
-            <span>·</span>
-            <span>Registration: {siteConfig.registration.status === 'open' ? 'Open' : siteConfig.registration.status === 'closed' ? 'Closed' : 'Coming Soon'}</span>
+        <div className={`container ${styles.heroInner}`}>
+          <div>
+            <p className={`${styles.eyebrow} rise-in`}>{event.theme}</p>
+
+            <h1 className={`${styles.title} rise-in`} style={{ '--delay': '80ms' } as React.CSSProperties}>
+              {namePart}
+              {yearPart && <span className={styles.titleYear}>{yearPart}</span>}
+            </h1>
+
+            <p className={`${styles.lede} rise-in`} style={{ '--delay': '160ms' } as React.CSSProperties}>
+              {event.description}
+            </p>
+
+            <ul className={`${styles.factRow} rise-in`} style={{ '--delay': '240ms' } as React.CSSProperties}>
+              <li className={styles.fact}>
+                <CalendarIcon className={styles.factIcon} />
+                <span className={styles.factText}>
+                  <span className={styles.factLabel}>Date</span>
+                  <span className={styles.factValue}>
+                    {event.datesConfirmed && event.startDate ? formatSessionDateTime(event.startDate) : 'TBA'}
+                  </span>
+                </span>
+              </li>
+              <li className={styles.fact}>
+                <MapPinIcon className={styles.factIcon} />
+                <span className={styles.factText}>
+                  <span className={styles.factLabel}>Location</span>
+                  <span className={styles.factValue}>{event.venue.name}</span>
+                </span>
+              </li>
+              <li className={styles.fact}>
+                <MonitorIcon className={styles.factIcon} />
+                <span className={styles.factText}>
+                  <span className={styles.factLabel}>Format</span>
+                  <span className={styles.factValue}>{FORMAT_LABELS[event.format]}</span>
+                </span>
+              </li>
+            </ul>
+
+            <div className={`${styles.actions} rise-in`} style={{ '--delay': '320ms' } as React.CSSProperties}>
+              <RegisterButton onDark />
+              <Link href="/schedule" className={styles.ghostButton}>
+                Explore Schedule
+                <ArrowRightIcon className={styles.ghostArrow} />
+              </Link>
+            </div>
           </div>
 
-          <div className={styles.countdownWrap}>
+          <div className={`${styles.heroAside} rise-in`} style={{ '--delay': '400ms' } as React.CSSProperties}>
+            <div className={styles.orbHolder}>
+              <QuantumOrb />
+            </div>
             <Countdown startDate={event.startDate} datesConfirmed={event.datesConfirmed} />
-          </div>
-
-          <div className={styles.actions}>
-            <RegisterButton />
-            <Link href="/schedule" className={styles.secondaryLink}>
-              View Schedule
-            </Link>
-            <Link href="/resources" className={styles.secondaryLink}>
-              Explore Resources
-            </Link>
           </div>
         </div>
       </section>
@@ -120,7 +162,8 @@ export default function Home() {
           <div className={styles.sectionHead}>
             <h2>Featured Sessions</h2>
             <Link href="/schedule" className={styles.secondaryLink}>
-              Full schedule →
+              Full schedule
+              <ArrowRightIcon size={16} />
             </Link>
           </div>
           {featuredSessions.length === 0 ? (
@@ -140,7 +183,8 @@ export default function Home() {
           <div className={styles.sectionHead}>
             <h2>Featured Speakers</h2>
             <Link href="/speakers" className={styles.secondaryLink}>
-              All speakers →
+              All speakers
+              <ArrowRightIcon size={16} />
             </Link>
           </div>
           {featuredSpeakers.length === 0 ? (

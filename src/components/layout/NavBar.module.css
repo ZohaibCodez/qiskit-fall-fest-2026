@@ -1,44 +1,101 @@
+/* Dark surface site-wide so it flows seamlessly into the always-dark hero.
+   Literal colors here for the same reason as the hero (see page.module.css). */
 .bar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  background: rgba(7, 11, 24, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-4);
   padding-top: var(--space-3);
   padding-bottom: var(--space-3);
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1.15;
   text-decoration: none;
-  color: var(--color-fg);
+  color: #f8fafc;
   white-space: nowrap;
+}
+
+.brandMark {
+  color: #7dd3fc;
+  flex-shrink: 0;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.brand:hover .brandMark {
+  transform: rotate(-12deg);
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandSub {
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.9);
 }
 
 .desktopLinks {
   display: none;
   align-items: center;
-  gap: var(--space-4);
-  flex-wrap: wrap;
+  gap: var(--space-1);
 }
 
 .link {
+  position: relative;
   font-size: 14px;
   font-weight: 500;
-  color: var(--color-fg);
+  color: rgba(226, 232, 240, 0.82);
   text-decoration: none;
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: color var(--motion-fast) var(--motion-ease);
+}
+
+/* Underline grows from the centre on hover; the active route keeps it. */
+.link::after {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: #38bdf8;
+  transform: scaleX(0);
+  transition: transform var(--motion-base) var(--motion-ease);
 }
 
 .link:hover {
-  color: var(--color-accent);
+  color: #f8fafc;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.active {
+  color: #7dd3fc;
+}
+
+.active::after {
+  transform: scaleX(1);
 }
 
 .toggle {
@@ -47,26 +104,15 @@
   justify-content: center;
   width: 44px;
   height: 44px;
+  color: #e2e8f0;
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: var(--radius-sm);
+  transition: background var(--motion-fast) var(--motion-ease);
 }
 
-.mobilePanel {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-2) 0 var(--space-4);
-}
-
-.mobilePanel .link {
-  padding: var(--space-3);
-  border-radius: var(--radius-sm);
-  min-height: 44px;
-}
-
-.mobilePanel .link:hover {
-  background: var(--color-muted);
+.toggle:hover {
+  background: rgba(148, 163, 184, 0.12);
 }
 
 .actions {
@@ -75,7 +121,48 @@
   gap: var(--space-3);
 }
 
-@media (min-width: 960px) {
+.mobilePanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) 0 var(--space-4);
+  animation: panel-in 220ms var(--motion-ease) both;
+}
+
+.mobilePanel .link {
+  padding: var(--space-3);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.mobilePanel .link::after {
+  display: none;
+}
+
+.mobilePanel .link:hover,
+.mobilePanel .active {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobilePanel {
+    animation: none;
+  }
+}
+
+@media (min-width: 1080px) {
   .desktopLinks {
     display: flex;
   }
@@ -83,6 +170,15 @@
     display: none;
   }
   .mobilePanel {
+    display: none;
+  }
+}
+
+/* The nav CTA is redundant next to the hero CTA on small screens — and the
+   bar gets cramped. Hide it below the desktop breakpoint; the mobile panel
+   and hero both still offer it. */
+@media (max-width: 560px) {
+  .actions .registerCta {
     display: none;
   }
 }

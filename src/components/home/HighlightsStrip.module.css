@@ -14,21 +14,35 @@
 }
 
 .item {
+  position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
-  border-top: 1px solid var(--color-border);
+  padding: var(--space-5) var(--space-4);
 }
 
-.item:first-child {
-  border-top: 0;
+/* Inset hairline dividers drawn as pseudo-elements rather than full-bleed
+   borders — edge-to-edge rules cut the card into boxes; inset ones separate
+   without fragmenting. */
+.item::before {
+  content: '';
+  position: absolute;
+  background: var(--color-border);
+  left: var(--space-4);
+  right: var(--space-4);
+  top: 0;
+  height: 1px;
+}
+
+.item:first-child::before {
+  display: none;
 }
 
 .title {
   font-weight: 600;
   font-size: 15px;
   margin: 0 0 2px;
+  letter-spacing: -0.01em;
 }
 
 .description {
@@ -36,20 +50,28 @@
   line-height: 1.45;
   color: var(--color-muted-fg);
   margin: 0;
+  text-wrap: pretty;
 }
 
+/* Once items sit side by side the divider flips to a vertical rule on the
+   left edge, inset from the card's top and bottom. */
 @media (min-width: 640px) {
   .strip {
     grid-template-columns: repeat(2, 1fr);
   }
-  /* Dividers become vertical once items sit side by side. */
-  .item {
-    border-top: 0;
-    border-left: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+  .item::before {
+    left: 0;
+    right: auto;
+    top: var(--space-4);
+    bottom: var(--space-4);
+    height: auto;
+    width: 1px;
   }
-  .item:nth-child(odd) {
-    border-left: 0;
+  .item:nth-child(odd)::before {
+    display: none;
+  }
+  .item:first-child::before {
+    display: none;
   }
 }
 
@@ -57,14 +79,10 @@
   .strip {
     grid-template-columns: repeat(5, 1fr);
   }
-  .item {
-    border-bottom: 0;
-    border-left: 1px solid var(--color-border);
+  .item:nth-child(odd)::before {
+    display: block;
   }
-  .item:nth-child(odd) {
-    border-left: 1px solid var(--color-border);
-  }
-  .item:first-child {
-    border-left: 0;
+  .item:first-child::before {
+    display: none;
   }
 }

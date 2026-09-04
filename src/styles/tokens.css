@@ -19,30 +19,50 @@
   --color-accent: #0369a1;
   --color-on-accent: #ffffff;
   --color-card: #ffffff;
-  --color-muted: #e8ecf1;
-  --color-muted-fg: #64748b;
-  --color-border: #e2e8f0;
+  --color-muted: #eef1f6;
+  --color-muted-fg: #5a6b85;
+  /* Deliberately darker than the usual #e2e8f0: on an off-white page the
+     lighter value is effectively invisible and cards lose their edges. */
+  --color-border: #d6deea;
   --color-destructive: #dc2626;
   --color-ring: #0369a1;
 
   --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
+  /* 4px scale. Keep this contiguous — a gap here is silent and destructive:
+     `padding: var(--space-5)` with no --space-5 defined is an invalid
+     declaration, so the ENTIRE padding rule is dropped and the element
+     renders with zero padding rather than a wrong one. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
+  --space-5: 20px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
+  --space-10: 40px;
   --space-12: 48px;
+  --space-14: 56px;
   --space-16: 64px;
 
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
 
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  /* Two-part shadows: a tight contact shadow for edge definition plus a wide
+     soft one for depth. A single blurred shadow reads as grey haze instead
+     of elevation, which is what made the cards look unstyled. */
+  --shadow-sm:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md:
+    0 1px 2px rgba(15, 23, 42, 0.07),
+    0 8px 24px rgba(15, 23, 42, 0.09);
+  --shadow-lg:
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 16px 40px rgba(15, 23, 42, 0.12);
 
   --motion-fast: 150ms;
   --motion-base: 250ms;

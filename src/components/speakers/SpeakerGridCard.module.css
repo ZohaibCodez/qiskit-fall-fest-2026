@@ -22,9 +22,12 @@
 
 /* ---------- Media ---------- */
 
+/* Landscape crop with a hard cap: a 1:1 ratio scales with card width, so on a
+   wide card it becomes a huge empty box (which is exactly what it did). */
 .media {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
+  max-height: 210px;
   background: var(--color-muted);
   overflow: hidden;
 }
@@ -33,6 +36,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: transform var(--motion-base) var(--motion-ease);
 }
 
@@ -40,13 +44,16 @@
   transform: scale(1.04);
 }
 
-/* TBA slots get a centred silhouette rather than a stretched placeholder. */
+/* TBA slots hold no photo, so they get a compact fixed band instead of a
+   ratio that grows with the card — just enough room for the silhouette. */
 .mediaTba {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1 / 1;
-  background: var(--color-card);
+  height: 148px;
+  background: linear-gradient(180deg, var(--color-muted) 0%, var(--color-card) 100%);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .badge {
@@ -74,7 +81,12 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--space-4) var(--space-5) var(--space-5);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+/* Placeholder cards read as intentionally-empty rather than broken. */
+.cardTba {
+  border-style: dashed;
 }
 
 .name {
@@ -87,7 +99,7 @@
 
 .designation {
   font-size: 13px;
-  color: var(--color-muted-fg);
+  color: var(--color-fg);
   margin: var(--space-2) 0 0;
   line-height: 1.45;
 }
@@ -95,7 +107,7 @@
 .organization {
   font-size: 13px;
   color: var(--color-muted-fg);
-  margin: 0;
+  margin: 2px 0 0;
   line-height: 1.45;
 }
 
@@ -104,6 +116,11 @@
   line-height: 1.55;
   color: var(--color-muted-fg);
   margin: var(--space-3) 0 0;
+  /* Keeps cards even when one speaker writes a paragraph and another a line. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .sessions {

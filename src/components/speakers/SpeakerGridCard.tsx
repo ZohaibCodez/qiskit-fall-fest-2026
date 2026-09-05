@@ -17,24 +17,26 @@ export function SpeakerGridCard({ speaker }: { speaker: Speaker }) {
   const name = isTba ? 'Speaker TBA' : speaker.name;
 
   return (
-    <article className={styles.card}>
-      {isTba ? (
-        <div className={styles.mediaTba}>
-          <span className={`${styles.badge} ${styles.badgeTba}`}>TBA</span>
-          <PlaceholderAvatar src={null} alt="" size={104} />
-        </div>
-      ) : (
+    <article className={`${styles.card} ${isTba ? styles.cardTba : ''}`}>
+      {/* Photo when there is one; otherwise the compact silhouette band —
+          which also covers a confirmed speaker whose photo hasn't arrived. */}
+      {speaker.photo && !isTba ? (
         <div className={styles.media}>
           {primaryVisual && (
             <span className={`${styles.badge} ${tileStyles[primaryVisual.tone]}`}>{primaryVisual.label}</span>
           )}
-          {speaker.photo ? (
-            <Image src={speaker.photo} alt={name} fill className={styles.photo} sizes="(max-width: 720px) 100vw, 300px" />
+          <Image src={speaker.photo} alt={name} fill className={styles.photo} sizes="(max-width: 720px) 100vw, 300px" />
+        </div>
+      ) : (
+        <div className={styles.mediaTba}>
+          {isTba ? (
+            <span className={`${styles.badge} ${styles.badgeTba}`}>TBA</span>
           ) : (
-            <div className={styles.mediaTba}>
-              <PlaceholderAvatar src={null} alt="" size={104} />
-            </div>
+            primaryVisual && (
+              <span className={`${styles.badge} ${tileStyles[primaryVisual.tone]}`}>{primaryVisual.label}</span>
+            )
           )}
+          <PlaceholderAvatar src={null} alt="" size={84} />
         </div>
       )}
 

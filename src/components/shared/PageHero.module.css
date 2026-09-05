@@ -148,6 +148,99 @@
   border-left: 0;
 }
 
+/* Wider panel variant: circular icon tile + title + description per item.
+   Spans the full hero width because four items don't fit beside the visual. */
+.featurePanel {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: var(--space-6);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.feature:first-child {
+  border-top: 0;
+}
+
+.featureIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: #a5b4fc;
+  background: rgba(129, 140, 248, 0.14);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.feature:hover .featureIcon {
+  transform: scale(1.06);
+}
+
+.featureBody {
+  min-width: 0;
+}
+
+.featureTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 3px;
+  /* A two-word label must never break mid-word ("Hands-" / "on"). */
+  white-space: nowrap;
+}
+
+.featureText {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(148, 163, 184, 0.95);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+@media (min-width: 640px) {
+  .featurePanel {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feature {
+    border-top: 0;
+    border-left: 1px solid rgba(148, 163, 184, 0.16);
+  }
+  .feature:nth-child(odd) {
+    border-left: 0;
+  }
+  .feature:nth-child(n + 3) {
+    border-top: 1px solid rgba(148, 163, 184, 0.16);
+  }
+}
+
+@media (min-width: 1080px) {
+  .featurePanel {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .feature:nth-child(odd),
+  .feature:nth-child(n + 3) {
+    border-top: 0;
+    border-left: 1px solid rgba(148, 163, 184, 0.16);
+  }
+  .feature:first-child {
+    border-left: 0;
+  }
+}
+
 .visual {
   display: none;
 }

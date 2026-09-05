@@ -213,6 +213,24 @@ export function StarIcon({ size = 22, className }: IconProps) {
   );
 }
 
+export function ClockIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="8.8" />
+      <path d="M12 6.8V12l3.4 2" />
+    </svg>
+  );
+}
+
+export function LaptopIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="4" y="4.6" width="16" height="11" rx="1.6" />
+      <path d="M2.2 19.4h19.6" />
+    </svg>
+  );
+}
+
 export function FlagIcon({ size = 22, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>

@@ -4,44 +4,54 @@
     "title": "Talks & Keynotes",
     "type": "keynote",
     "status": "planned",
-    "description": "Opening and closing talks framing the event and the 2026 theme.",
+    "description": "Inspiring talks from industry leaders and researchers on the future of quantum computing.",
     "timing": null,
-    "sessionId": "sess-001"
+    "venue": null,
+    "audience": "Open to all",
+    "sessionId": "sess-002"
   },
   {
     "id": "act-intro",
     "title": "Beginner Sessions",
     "type": "talk",
     "status": "planned",
-    "description": "A no-prerequisites walkthrough of core quantum ideas for first-timers.",
+    "description": "A no-prerequisites walkthrough of core quantum ideas for first-time attendees.",
     "timing": null,
-    "sessionId": "sess-002"
+    "venue": null,
+    "audience": "Open to all",
+    "sessionId": "sess-003"
   },
   {
     "id": "act-workshop",
     "title": "Hands-on Workshops",
     "type": "workshop",
     "status": "planned",
-    "description": "Guided sessions writing and running quantum circuits with Qiskit.",
+    "description": "Practical, step-by-step workshops where you'll learn by building quantum programs using Qiskit.",
     "timing": null,
-    "sessionId": "sess-003"
+    "venue": null,
+    "audience": "Bring a laptop",
+    "sessionId": "sess-004"
+  },
+  {
+    "id": "act-networking",
+    "title": "Networking Sessions",
+    "type": "networking",
+    "status": "planned",
+    "description": "Meet peers, mentors, and experts from the quantum community and beyond.",
+    "timing": null,
+    "venue": null,
+    "audience": "Open to all",
+    "sessionId": null
   },
   {
     "id": "act-challenge",
     "title": "Quantum Challenges",
     "type": "challenge",
     "status": "tba",
-    "description": "Whether a coding challenge runs this year is still being finalized.",
+    "description": "Team-based challenges to solve real-world problems using quantum computing. Details coming soon.",
     "timing": null,
-    "sessionId": null
-  },
-  {
-    "id": "act-networking",
-    "title": "Networking",
-    "type": "networking",
-    "status": "planned",
-    "description": "Time to meet other attendees, organizers, and speakers between sessions.",
-    "timing": null,
+    "venue": null,
+    "audience": null,
     "sessionId": null
   },
   {
@@ -49,17 +59,21 @@
     "title": "Community & Demos",
     "type": "demo",
     "status": "tba",
-    "description": "Community demos and team activities are still being finalized.",
+    "description": "Community demos and team activities. Details coming soon.",
     "timing": null,
+    "venue": null,
+    "audience": null,
     "sessionId": null
   },
   {
     "id": "act-panel",
-    "title": "Panel & Discussions",
+    "title": "Panel Discussions",
     "type": "panel",
     "status": "not-planned",
     "description": "Not part of this year's program.",
     "timing": null,
+    "venue": null,
+    "audience": null,
     "sessionId": null
   }
 ]

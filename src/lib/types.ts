@@ -144,8 +144,23 @@ export interface Activity {
   type: ActivityType;
   status: ActivityStatus;
   description: string;
+  /** Free-text meta shown on the activities page; null renders as TBA. */
   timing: string | null;
+  venue: string | null;
+  audience: string | null;
   sessionId: string | null;
+}
+
+/** Page copy for /activities (see content/activities-page.json). */
+export interface ActivitiesPageContent {
+  hero: {
+    eyebrow: string;
+    titleWords: string[];
+    lede: string;
+    features: Array<{ id: string; icon: HighlightIcon; title: string; description: string }>;
+  };
+  intro: { heading: string; subheading: string };
+  prompt: { title: string; text: string; actionLabel: string; actionHref: string };
 }
 
 export type ResourceCategory =
@@ -202,7 +217,16 @@ export interface Testimonial {
   photo: string | null;
 }
 
-export type HighlightIcon = 'users' | 'code' | 'chat' | 'cloud' | 'gift' | 'trophy' | 'sparkles';
+export type HighlightIcon =
+  | 'users'
+  | 'code'
+  | 'chat'
+  | 'cloud'
+  | 'gift'
+  | 'trophy'
+  | 'sparkles'
+  | 'laptop'
+  | 'network';
 
 /** The short "what this event gives you" strip under the hero. */
 export interface Highlight {

@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "eyebrow": "Event Activities",
+    "titleWords": ["Learn", "Build", "Compete", "Connect"],
+    "lede": "A rich lineup of talks, hands-on workshops, challenges and networking opportunities designed for everyone.",
+    "features": [
+      {
+        "id": "af-everyone",
+        "icon": "users",
+        "title": "For Everyone",
+        "description": "Students, developers, researchers & professionals"
+      },
+      {
+        "id": "af-handson",
+        "icon": "laptop",
+        "title": "Hands-on",
+        "description": "Practical sessions to build real skills"
+      },
+      {
+        "id": "af-challenges",
+        "icon": "trophy",
+        "title": "Challenges",
+        "description": "Test your skills with the community"
+      },
+      {
+        "id": "af-network",
+        "icon": "network",
+        "title": "Network",
+        "description": "Connect with peers, mentors and experts"
+      }
+    ]
+  },
+  "intro": {
+    "heading": "Event Activities",
+    "subheading": "Explore everything we have planned for Qiskit Fall Fest 2026."
+  },
+  "prompt": {
+    "title": "More activities may be added!",
+    "text": "We are constantly working to bring you the best experience. Stay tuned for exciting updates.",
+    "actionLabel": "View Schedule",
+    "actionHref": "/schedule"
+  }
+}

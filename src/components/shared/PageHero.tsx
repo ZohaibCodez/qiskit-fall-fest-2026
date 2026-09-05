@@ -12,6 +12,8 @@ export function PageHero({
   visual,
   facts,
   stats,
+  features,
+  titleNode,
 }: {
   eyebrow: string;
   title: string;
@@ -22,6 +24,10 @@ export function PageHero({
   facts?: HeroFact[];
   /** Bordered panel variant, for counts like speakers / sessions / countries. */
   stats?: HeroFact[];
+  /** Bordered panel with circular icon tiles and a description per item. */
+  features?: Array<{ id: string; icon: ReactNode; title: string; description: string }>;
+  /** Rendered in place of `title` when the title needs custom markup. */
+  titleNode?: ReactNode;
 }) {
   return (
     <section className={styles.hero}>
@@ -32,8 +38,12 @@ export function PageHero({
         <div>
           <p className={`${styles.eyebrow} rise-in`}>{eyebrow}</p>
           <h1 className={`${styles.title} rise-in`} style={{ '--delay': '80ms' } as React.CSSProperties}>
-            {title}
-            {titleAccent && <> <span className={styles.accent}>{titleAccent}</span></>}
+            {titleNode ?? (
+              <>
+                {title}
+                {titleAccent && <> <span className={styles.accent}>{titleAccent}</span></>}
+              </>
+            )}
           </h1>
           {lede && (
             <p className={`${styles.lede} rise-in`} style={{ '--delay': '160ms' } as React.CSSProperties}>
@@ -68,6 +78,7 @@ export function PageHero({
               ))}
             </div>
           )}
+
         </div>
 
         {visual && (
@@ -76,6 +87,24 @@ export function PageHero({
           </div>
         )}
       </div>
+
+      {/* Full container width, outside the text/visual grid — four items
+          squeezed into one grid column wrap into unreadable slivers. */}
+      {features && features.length > 0 && (
+        <div className="container">
+          <div className={`${styles.featurePanel} rise-in`} style={{ '--delay': '300ms' } as React.CSSProperties}>
+            {features.map((feature) => (
+              <div className={styles.feature} key={feature.id}>
+                <span className={styles.featureIcon}>{feature.icon}</span>
+                <div className={styles.featureBody}>
+                  <p className={styles.featureTitle}>{feature.title}</p>
+                  <p className={styles.featureText}>{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -1,0 +1,50 @@
+.titleWord {
+  white-space: nowrap;
+}
+
+/* The period carries the accent colour, as in the reference. */
+.titleDot {
+  background: linear-gradient(96deg, #818cf8 0%, #a78bfa 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+}
+
+.subheading {
+  color: var(--color-muted-fg);
+  margin: 0;
+  font-size: 14.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+  align-items: stretch;
+}
+
+/* Each card is wrapped in a <Reveal> element, which becomes the grid item —
+   without this the wrapper stretches but the card inside it doesn't. */
+.grid > * {
+  height: 100%;
+  min-width: 0;
+}
+
+.promptWrap {
+  margin-top: var(--space-8);
+}

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Session, SessionType } from '@/lib/types';
 import { getSpeakersForSession } from '@/lib/content';
-import { formatSessionTime } from '@/lib/format';
+import { formatClock } from '@/lib/schedule';
 import { IconTile, type TileTone } from '@/components/shared/IconTile';
 import {
   MicIcon,
@@ -45,7 +45,7 @@ function SessionRow({ session }: { session: Session }) {
       </div>
       <div className={styles.meta}>
         <span className={styles.metaTime}>
-          {session.startTime ? formatSessionTime(session.startTime) : 'TBA'}
+          {formatClock(session.start) ?? 'TBA'}
         </span>
         {/* Only show the room when it's actually known — otherwise the row
             reads as a meaningless "TBA / TBA". */}

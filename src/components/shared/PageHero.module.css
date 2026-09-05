@@ -74,8 +74,62 @@
   margin: 0;
 }
 
+/* Date / location / format row — same treatment as the home hero's fact row. */
+.factRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 0;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-right: var(--space-6);
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.fact:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.factIcon {
+  color: #7dd3fc;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.factText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.factLabel {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.factValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
 .visual {
   display: none;
+}
+
+@media (max-width: 560px) {
+  .fact {
+    border-right: 0;
+    padding-right: 0;
+  }
 }
 
 @media (min-width: 900px) {

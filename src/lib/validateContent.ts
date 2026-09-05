@@ -61,12 +61,29 @@ export function validateContent(data: {
   const sessionIds = new Set(data.schedule.map((s) => s.id));
   const speakerIds = new Set(data.speakers.map((s) => s.id));
 
+  const CLOCK_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+
   data.schedule.forEach((session, i) => {
-    checkEnum(session.type, SESSION_TYPES, `schedule[${i}] (${session.id})`);
-    checkEnum(session.status, CONFIRMATION_STATUSES, `schedule[${i}] (${session.id}).status`);
+    const where = `schedule[${i}] (${session.id})`;
+    checkEnum(session.type, SESSION_TYPES, where);
+    checkEnum(session.status, CONFIRMATION_STATUSES, `${where}.status`);
+
+    if (!Number.isInteger(session.day) || session.day < 1) {
+      fail(`${where}.day must be a whole number of 1 or more (got ${session.day})`);
+    }
+    (['start', 'end'] as const).forEach((field) => {
+      const value = session[field];
+      if (value !== null && !CLOCK_RE.test(value)) {
+        fail(`${where}.${field} must be "HH:MM" 24-hour time or null (got "${value}")`);
+      }
+    });
+    if (session.end && !session.start) {
+      fail(`${where} has an end time but no start time`);
+    }
+
     session.speakerIds.forEach((id) => {
       if (!speakerIds.has(id)) {
-        fail(`schedule[${i}] (${session.id}) references unknown speakerId "${id}"`);
+        fail(`${where} references unknown speakerId "${id}"`);
       }
     });
   });

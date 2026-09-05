@@ -17,7 +17,7 @@ export default function EventDayPage() {
     <div className="container page-wrap" style={{ maxWidth: 800 }}>
       <h1>Event Day</h1>
 
-      <EventDayLive schedule={schedule} />
+      <EventDayLive schedule={schedule} config={siteConfig} />
 
       <h2 style={{ marginTop: 32 }}>Venue</h2>
       <p>

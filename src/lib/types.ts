@@ -68,12 +68,19 @@ export type SessionType =
 
 export interface Session {
   id: string;
+  /** 1-based event day. Organizers plan the agenda's shape before the calendar date is fixed. */
+  day: number;
   title: string;
   type: SessionType;
   status: ConfirmationStatus;
-  startTime: string | null;
-  endTime: string | null;
-  durationMinutes: number | null;
+  /**
+   * Clock times as "HH:MM" in the venue's local time, or null when not yet
+   * scheduled — deliberately NOT absolute datetimes, so an agenda can exist
+   * before `event.startDate` is confirmed. Absolute instants are derived at
+   * runtime by lib/schedule.ts once the start date is set.
+   */
+  start: string | null;
+  end: string | null;
   description: string;
   speakerIds: string[];
   location: {

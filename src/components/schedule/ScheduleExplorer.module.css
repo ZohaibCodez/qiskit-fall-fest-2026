@@ -1,0 +1,205 @@
+/* ---------- Day tabs ---------- */
+
+.dayBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.day:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.dayActive {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-card));
+}
+
+.dayIcon {
+  color: var(--color-accent);
+}
+
+.dayLabel {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-fg);
+}
+
+.dayDate {
+  display: block;
+  font-size: 12px;
+  color: var(--color-muted-fg);
+}
+
+.download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 14px;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.download:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.download:disabled {
+  color: var(--color-muted-fg);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+/* ---------- Filters ---------- */
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pill {
+  min-height: 38px;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-fg);
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.pillActive,
+.pillActive:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.search {
+  position: relative;
+  min-width: 240px;
+  flex: 1;
+  max-width: 320px;
+}
+
+.searchInput {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-10) var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-fg);
+  font-size: 14px;
+  transition: border-color var(--motion-fast) var(--motion-ease);
+}
+
+.searchInput:focus {
+  border-color: var(--color-accent);
+}
+
+.searchIcon {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted-fg);
+  pointer-events: none;
+}
+
+/* ---------- Layout ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 3vw, 32px);
+  align-items: start;
+}
+
+.layout > * {
+  min-width: 0;
+}
+
+@media (min-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  }
+  .sidebar {
+    position: sticky;
+    top: 84px;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-size: 13px;
+  color: var(--color-muted-fg);
+}

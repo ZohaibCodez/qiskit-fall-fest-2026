@@ -1,0 +1,223 @@
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+
+/* Live card inverts to the dark surface so "happening now" is unmistakable. */
+.live {
+  background: #0b1020;
+  border-color: rgba(148, 163, 184, 0.24);
+  color: #e2e8f0;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.live .cardTitle {
+  color: #f8fafc;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotLive {
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: pulse 2.2s ease-out infinite;
+}
+
+.dotNext {
+  background: var(--color-accent);
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 7px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dotLive {
+    animation: none;
+  }
+}
+
+.timeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.time {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+  font-size: 13.5px;
+  color: var(--color-muted-fg);
+}
+
+.live .time {
+  color: rgba(203, 213, 225, 0.8);
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px var(--space-2);
+  border-radius: 999px;
+  background: #16a34a;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.typePill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px var(--space-2);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.sessionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.live .sessionTitle {
+  color: #f8fafc;
+}
+
+.detail {
+  font-size: 13.5px;
+  margin: 0 0 var(--space-1);
+  color: var(--color-muted-fg);
+}
+
+.live .detail {
+  color: rgba(203, 213, 225, 0.82);
+}
+
+.detailKey {
+  display: inline-block;
+  min-width: 62px;
+  color: var(--color-muted-fg);
+}
+
+.live .detailKey {
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.startsIn {
+  font-size: 13.5px;
+  color: var(--color-muted-fg);
+  margin: var(--space-2) 0 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  min-height: 32px;
+}
+
+.live .link {
+  color: #7dd3fc;
+}
+
+.link svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------- Session type legend ---------- */
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.legendName {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.legendBlurb {
+  font-size: 12.5px;
+  color: var(--color-muted-fg);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ---------- Missing something ---------- */
+
+.noticeCard {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-card));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.noticeTitle {
+  font-size: 14.5px;
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.noticeBody {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+.empty {
+  font-size: 13.5px;
+  color: var(--color-muted-fg);
+  margin: 0;
+}

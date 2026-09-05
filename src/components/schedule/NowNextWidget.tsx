@@ -1,21 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Session } from '@/lib/types';
-import { getCurrentAndNextSession } from '@/lib/eventPhase';
+import type { Session, SiteConfig } from '@/lib/types';
+import { getCurrentAndNextSession } from '@/lib/schedule';
 import { SessionCard } from './SessionCard';
 import styles from './NowNextWidget.module.css';
 
 /** Live "current / next session" view — used on /event-day. Reads the same schedule data as /schedule. */
-export function NowNextWidget({ schedule }: { schedule: Session[] }) {
-  const [{ current, next }, setState] = useState(() => getCurrentAndNextSession(schedule, new Date()));
+export function NowNextWidget({ schedule, config }: { schedule: Session[]; config: SiteConfig }) {
+  const [{ current, next }, setState] = useState(() => getCurrentAndNextSession(schedule, config, new Date()));
 
   useEffect(() => {
     const id = setInterval(() => {
-      setState(getCurrentAndNextSession(schedule, new Date()));
+      setState(getCurrentAndNextSession(schedule, config, new Date()));
     }, 30_000);
     return () => clearInterval(id);
-  }, [schedule]);
+  }, [schedule, config]);
+
+  const timesKnown = config.event.datesConfirmed && Boolean(config.event.startDate);
+
+  if (!timesKnown) {
+    return <p className={styles.empty}>Session times will appear here once the schedule is confirmed.</p>;
+  }
 
   return (
     <div className={styles.wrap}>

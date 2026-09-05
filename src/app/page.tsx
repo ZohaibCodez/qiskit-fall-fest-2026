@@ -12,7 +12,6 @@ import { GlobeVisual } from '@/components/home/GlobeVisual';
 import { StructuredData } from '@/components/shared/StructuredData';
 import { EmptyState } from '@/components/shared/EmptyState';
 import { CalendarIcon, MapPinIcon, MonitorIcon, ArrowRightIcon, RocketIcon } from '@/components/shared/Icons';
-import { formatSessionDateTime } from '@/lib/format';
 import styles from './page.module.css';
 
 const FORMAT_LABELS: Record<string, string> = {
@@ -106,7 +105,7 @@ export default function Home() {
                 <span className={styles.factText}>
                   <span className={styles.factLabel}>Date</span>
                   <span className={styles.factValue}>
-                    {event.datesConfirmed && event.startDate ? formatSessionDateTime(event.startDate) : 'TBA'}
+                    {event.datesConfirmed && event.startDate ? new Date(event.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'TBA'}
                   </span>
                 </span>
               </li>

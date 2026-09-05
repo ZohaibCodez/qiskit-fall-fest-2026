@@ -213,6 +213,40 @@ export function StarIcon({ size = 22, className }: IconProps) {
   );
 }
 
+export function FlagIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M5.4 21V3.4M5.4 4.6h11.4l-1.9 3.6 1.9 3.6H5.4" />
+    </svg>
+  );
+}
+
+export function SearchIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="10.8" cy="10.8" r="6.6" />
+      <path d="m15.6 15.6 4.2 4.2" />
+    </svg>
+  );
+}
+
+export function DownloadIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M12 3.6v11M7.6 10.4 12 14.8l4.4-4.4M4.4 19.4h15.2" />
+    </svg>
+  );
+}
+
+export function InfoIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5.2M12 7.8v.6" />
+    </svg>
+  );
+}
+
 export function GlobeIcon({ size = 22, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import type { EventPhase, Session, SiteConfig } from './types';
+import type { EventPhase, SiteConfig } from './types';
 
 const REFRESH_INTERVAL_MS = 60_000;
 
@@ -18,22 +18,6 @@ export function computeEventPhase(config: SiteConfig, now: Date): EventPhase {
   if (now < start) return 'before';
   if (now > end) return 'after';
   return 'during';
-}
-
-export function getCurrentAndNextSession(schedule: Session[], now: Date) {
-  const timed = schedule
-    .filter((s) => s.status === 'confirmed' && s.startTime && s.endTime)
-    .map((s) => ({
-      session: s,
-      start: new Date(s.startTime as string),
-      end: new Date(s.endTime as string),
-    }))
-    .sort((a, b) => a.start.getTime() - b.start.getTime());
-
-  const current = timed.find((s) => now >= s.start && now <= s.end)?.session ?? null;
-  const next = timed.find((s) => s.start > now)?.session ?? null;
-
-  return { current, next };
 }
 
 const EventPhaseContext = createContext<EventPhase>('before');

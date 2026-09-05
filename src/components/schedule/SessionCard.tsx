@@ -1,6 +1,6 @@
 import type { Session } from '@/lib/types';
 import { getSpeakersForSession } from '@/lib/content';
-import { formatSessionDateTime } from '@/lib/format';
+import { formatTimeRange } from '@/lib/schedule';
 import { StatusBadge } from '@/components/shared/StatusBadge';
 import styles from './SessionCard.module.css';
 
@@ -28,7 +28,7 @@ export function SessionCard({ session, highlighted }: { session: Session; highli
       </div>
       <h3 className={styles.title}>{session.title}</h3>
       <p className={styles.meta}>
-        {isTba || !session.startTime ? 'Time TBA' : formatSessionDateTime(session.startTime)}
+        {formatTimeRange(session)}
         {' · '}
         {session.location.isOnline
           ? session.location.onlineUrl

@@ -1,6 +1,6 @@
 import type { Speaker } from '@/lib/types';
 import { getSessionsForSpeaker } from '@/lib/content';
-import { formatSessionDateTime } from '@/lib/format';
+import { formatTimeRange } from '@/lib/schedule';
 import { PlaceholderAvatar } from '@/components/shared/PlaceholderAvatar';
 import { ExternalLink } from '@/components/shared/ExternalLink';
 import { StatusBadge } from '@/components/shared/StatusBadge';
@@ -42,7 +42,7 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
             {sessions.map((session) => (
               <p className={styles.session} key={session.id}>
                 {session.title}
-                {session.startTime ? ` · ${formatSessionDateTime(session.startTime)}` : ' · Time TBA'}
+                {` · ${formatTimeRange(session)}`}
               </p>
             ))}
             {speaker.socials.length > 0 && (

@@ -271,6 +271,12 @@
   gap: clamp(28px, 4vw, 40px);
 }
 
+/* Grid items default to `min-width: auto` — without this, a long session
+   title pushes the column wider than the viewport instead of wrapping. */
+.twoColumn > * {
+  min-width: 0;
+}
+
 .speakerGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

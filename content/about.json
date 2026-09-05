@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "eyebrow": "About Qiskit Fall Fest 2026",
+    "title": "A Decade of Quantum on the",
+    "titleAccent": "Cloud",
+    "lede": "Qiskit Fall Fest is a global celebration of quantum computing, where the community comes together to learn, build, and explore the future of quantum technology."
+  },
+  "whatIsFest": {
+    "heading": "What is Qiskit Fall Fest?",
+    "body": "Qiskit Fall Fest is a global series of local events hosted by the Qiskit community to celebrate quantum computing. Each chapter brings together students, developers, researchers, educators, and industry experts to share knowledge, work on hands-on projects, and build the quantum future."
+  },
+  "theme": {
+    "label": "2026 Theme",
+    "title": "A Decade of Quantum on the Cloud",
+    "body": "Ten years ago, IBM made quantum computing available on the cloud for the first time. In 2026, we celebrate a decade of innovation, accessibility, and community-driven progress in quantum computing."
+  },
+  "whatIsQiskit": {
+    "heading": "What is Qiskit?",
+    "body": "Qiskit is an open-source framework developed by IBM for working with quantum computers. It enables you to create, run, and optimize quantum programs using Python.",
+    "features": [
+      { "id": "qf-open", "icon": "gear", "title": "Open Source", "description": "Built by a global community" },
+      { "id": "qf-learn", "icon": "target", "title": "Easy to Learn", "description": "Python-based and beginner friendly" },
+      { "id": "qf-power", "icon": "rocket", "title": "Powerful", "description": "Run on real quantum hardware" },
+      { "id": "qf-e2e", "icon": "flow", "title": "End-to-End", "description": "From education to research to industry" }
+    ],
+    "codeSample": "from qiskit import QuantumCircuit, transpile\nfrom qiskit_aer import AerSimulator\n\nqc = QuantumCircuit(2, 2)\nqc.h(0)\nqc.cx(0, 1)\nqc.measure([0, 1], [0, 1])\n\nbackend = AerSimulator()\njob = backend.run(transpile(qc, backend), shots=1024)\nresult = job.result()\nprint(result.get_counts())"
+  },
+  "localEvent": {
+    "heading": "About Our Local Event",
+    "body": "This local Qiskit Fall Fest 2026 event brings together the quantum community at our university and beyond. It aims to inspire curiosity, encourage learning, and provide a platform to collaborate on the next wave of quantum innovation.",
+    "objectives": [
+      "Promote quantum computing education and awareness",
+      "Provide hands-on experience with Qiskit and quantum systems",
+      "Foster collaboration among students, researchers, and industry",
+      "Encourage innovation through challenges and team activities",
+      "Connect with the global Qiskit community"
+    ]
+  },
+  "cards": [
+    {
+      "id": "ab-who",
+      "icon": "users",
+      "title": "Who Should Attend?",
+      "body": "Students, developers, researchers, educators, professionals, and anyone curious about quantum computing — no prior quantum experience required!",
+      "items": []
+    },
+    {
+      "id": "ab-gain",
+      "icon": "rocket",
+      "title": "What Will You Gain?",
+      "body": "",
+      "items": [
+        "Learn quantum computing basics",
+        "Hands-on Qiskit workshops",
+        "Build quantum projects",
+        "Network with experts & peers",
+        "Explore future opportunities"
+      ]
+    },
+    {
+      "id": "ab-why",
+      "icon": "star",
+      "title": "Why It Matters?",
+      "body": "Quantum computing is transforming the future — from solving complex problems to building new industries. Be part of this journey and help shape what's next.",
+      "items": []
+    }
+  ],
+  "cta": {
+    "title": "Join the Quantum Movement",
+    "subtitle": "Learn. Build. Explore. Connect."
+  }
+}

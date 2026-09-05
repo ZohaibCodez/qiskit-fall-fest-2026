@@ -165,6 +165,64 @@ export function RocketIcon({ size = 22, className }: IconProps) {
   );
 }
 
+export function GearIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="3.2" />
+      <path d="M12 2.6v2.6M12 18.8v2.6M21.4 12h-2.6M5.2 12H2.6M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9M18.6 18.6l-1.9-1.9M7.3 7.3 5.4 5.4" />
+    </svg>
+  );
+}
+
+export function TargetIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="8.6" />
+      <circle cx="12" cy="12" r="4.6" />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function FlowIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="2.6" y="3.4" width="5.4" height="5.4" rx="1.4" />
+      <rect x="16" y="3.4" width="5.4" height="5.4" rx="1.4" />
+      <rect x="2.6" y="15.2" width="5.4" height="5.4" rx="1.4" />
+      <rect x="16" y="15.2" width="5.4" height="5.4" rx="1.4" />
+      <path d="M8 6.1h8M8 17.9h8M5.3 8.8v6.4M18.7 8.8v6.4" />
+    </svg>
+  );
+}
+
+export function CheckCircleIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="m8.2 12.2 2.6 2.6 5-5.4" />
+    </svg>
+  );
+}
+
+export function StarIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="m12 3.2 2.72 5.62 6.08.85-4.4 4.34 1.05 6.1L12 17.24l-5.45 2.87 1.05-6.1-4.4-4.34 6.08-.85L12 3.2Z" />
+    </svg>
+  );
+}
+
+export function GlobeIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M3 12h18" />
+      <path d="M12 2.8c2.3 2.5 3.5 5.7 3.5 9.2s-1.2 6.7-3.5 9.2c-2.3-2.5-3.5-5.7-3.5-9.2S9.7 5.3 12 2.8Z" />
+    </svg>
+  );
+}
+
 /* ---------- Brand marks (filled, no stroke — they're logos, not UI icons) ---------- */
 
 const brandBase = (size: number) => ({

@@ -1,0 +1,88 @@
+/* Dark hero shared by inner pages, matching the home hero's surface so the
+   site keeps one masthead treatment. Literal colors, like the other dark
+   surfaces — see tokens.css for why. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #070b18;
+  color: #e2e8f0;
+  padding: clamp(24px, 3vw, 40px) 0 clamp(28px, 3.4vw, 44px);
+  isolation: isolate;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(56% 46% at 76% 28%, rgba(99, 102, 241, 0.3), transparent 64%),
+    radial-gradient(44% 40% at 10% 10%, rgba(14, 165, 233, 0.14), transparent 62%),
+    linear-gradient(180deg, #070b18 0%, #0a1024 100%);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 72%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 72%);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+  margin: 0 0 var(--space-3);
+}
+
+.title {
+  font-size: clamp(30px, 4.6vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+.accent {
+  background: linear-gradient(96deg, #818cf8 0%, #a78bfa 45%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.6;
+  color: rgba(203, 213, 225, 0.86);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.visual {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .visual {
+    display: block;
+  }
+}

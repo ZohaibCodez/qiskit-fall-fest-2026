@@ -1,0 +1,191 @@
+/* ---------- Section scaffolding ---------- */
+
+.section {
+  padding: clamp(28px, 3.6vw, 44px) 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+/* Grid items default to `min-width: auto`, so wide content (the code block's
+   long lines) forces the whole column wider than the viewport instead of
+   scrolling inside its own box. This is what allows it to shrink. */
+.split > * {
+  min-width: 0;
+}
+
+.body {
+  color: var(--color-muted-fg);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 58ch;
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- 2026 theme callout ---------- */
+
+.themeCard {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+  background: linear-gradient(150deg, #f5f3ff 0%, #eef4ff 100%);
+  box-shadow: var(--shadow-sm);
+}
+
+.themeLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6d28d9;
+  margin: 0 0 var(--space-1);
+}
+
+.themeTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+  letter-spacing: -0.015em;
+}
+
+.themeBody {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+/* ---------- Qiskit feature row ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5) var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.feature {
+  text-align: center;
+}
+
+.featureIcon {
+  color: var(--color-accent);
+  display: inline-flex;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.feature:hover .featureIcon {
+  transform: translateY(-3px);
+}
+
+.featureTitle {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: var(--space-2) 0 2px;
+}
+
+.featureText {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+@media (min-width: 560px) {
+  .features {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- Objectives checklist ---------- */
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.checkItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---------- Bottom info cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  align-items: stretch;
+}
+
+/* Each card is wrapped in a <Reveal> element, which becomes the grid item —
+   without this the wrapper stretches but the card inside it doesn't, so the
+   cards end up ragged. */
+.cards > * {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.cardBody {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+.cardList {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--color-muted-fg);
+}

@@ -199,6 +199,25 @@ export interface Highlight {
   description: string;
 }
 
+export type FeatureIcon = 'gear' | 'target' | 'rocket' | 'flow';
+export type AboutCardIcon = 'users' | 'rocket' | 'star';
+
+/** Structured copy for the About page (see content/about.json). */
+export interface AboutContent {
+  hero: { eyebrow: string; title: string; titleAccent: string; lede: string };
+  whatIsFest: { heading: string; body: string };
+  theme: { label: string; title: string; body: string };
+  whatIsQiskit: {
+    heading: string;
+    body: string;
+    features: Array<{ id: string; icon: FeatureIcon; title: string; description: string }>;
+    codeSample: string;
+  };
+  localEvent: { heading: string; body: string; objectives: string[] };
+  cards: Array<{ id: string; icon: AboutCardIcon; title: string; body: string; items: string[] }>;
+  cta: { title: string; subtitle: string };
+}
+
 export type AnnouncementPriority = 'normal' | 'urgent';
 
 export interface Announcement {

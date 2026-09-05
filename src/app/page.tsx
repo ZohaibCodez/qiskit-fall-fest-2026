@@ -6,12 +6,12 @@ import { SessionRowList } from '@/components/schedule/SessionRow';
 import { SpeakerTile } from '@/components/speakers/SpeakerTile';
 import { ActivityTile } from '@/components/activities/ActivityTile';
 import { HighlightsStrip } from '@/components/home/HighlightsStrip';
-import { HomeCta } from '@/components/home/HomeCta';
+import { CtaBand } from '@/components/shared/CtaBand';
 import { HomeArchiveTeaser } from '@/components/home/HomeArchiveTeaser';
 import { GlobeVisual } from '@/components/home/GlobeVisual';
 import { StructuredData } from '@/components/shared/StructuredData';
 import { EmptyState } from '@/components/shared/EmptyState';
-import { CalendarIcon, MapPinIcon, MonitorIcon, ArrowRightIcon } from '@/components/shared/Icons';
+import { CalendarIcon, MapPinIcon, MonitorIcon, ArrowRightIcon, RocketIcon } from '@/components/shared/Icons';
 import { formatSessionDateTime } from '@/lib/format';
 import styles from './page.module.css';
 
@@ -213,7 +213,15 @@ export default function Home() {
 
       <section className={styles.ctaSection}>
         <div className="container">
-          <HomeCta />
+          <CtaBand
+            title="Be Part of the Quantum Future"
+            subtitle={
+              siteConfig.registration.cost.toLowerCase() === 'free'
+                ? `Join us for ${siteConfig.event.name} — free to attend, no experience required.`
+                : `Join us for ${siteConfig.event.name}. Registration: ${siteConfig.registration.cost}.`
+            }
+            art={<RocketIcon size={40} />}
+          />
         </div>
       </section>
     </>

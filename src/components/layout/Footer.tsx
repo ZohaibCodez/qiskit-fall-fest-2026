@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import { ExternalLink } from '@/components/shared/ExternalLink';
 import { siteConfig } from '@/lib/content';
-import { GithubIcon, LinkedinIcon, XIcon, YoutubeIcon } from '@/components/shared/Icons';
+import {
+  GithubIcon,
+  LinkedinIcon,
+  XIcon,
+  YoutubeIcon,
+  ArrowRightIcon,
+} from '@/components/shared/Icons';
 import styles from './Footer.module.css';
 
 /** Known platforms get their real mark; anything else falls back to a text link. */
@@ -12,6 +18,21 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
   twitter: XIcon,
   youtube: YoutubeIcon,
 };
+
+const QUICK_LINKS: Array<[string, string]> = [
+  ['/schedule', 'Schedule'],
+  ['/speakers', 'Speakers'],
+  ['/activities', 'Activities'],
+  ['/resources', 'Resources'],
+  ['/registration', 'Registration'],
+];
+
+const EVENT_LINKS: Array<[string, string]> = [
+  ['/before-you-attend', 'Before You Attend'],
+  ['/faq', 'FAQ'],
+  ['/gallery', 'Gallery'],
+  ['/contact', 'Contact Us'],
+];
 
 function BrandMark() {
   return (
@@ -29,53 +50,91 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
-        <div className={styles.top}>
-          <Link href="/" className={styles.brand}>
-            <BrandMark />
-            <span className={styles.brandText}>
-              Qiskit
-              <span className={styles.brandSub}>{event.name.replace(/^Qiskit\s+/, '')}</span>
-            </span>
-          </Link>
-
-          <div className={styles.tagline}>
-            <p>{event.theme}.</p>
-            <p>Stay connected with the Qiskit community.</p>
+        <div className={styles.columns}>
+          <div>
+            <Link href="/" className={styles.brand}>
+              <BrandMark />
+              <span className={styles.brandText}>
+                Qiskit
+                <span className={styles.brandSub}>{event.name.replace(/^Qiskit\s+/, '')}</span>
+              </span>
+            </Link>
+            <p className={styles.tagline}>
+              {event.theme}. Stay connected with the Qiskit community.
+            </p>
+            {contact.socials.length > 0 && (
+              <div className={styles.socials}>
+                {contact.socials.map((social) => {
+                  const Icon = SOCIAL_ICONS[social.platform.toLowerCase()];
+                  return (
+                    <ExternalLink
+                      href={social.url}
+                      key={social.platform}
+                      className={styles.social}
+                      aria-label={social.platform}
+                    >
+                      {Icon ? <Icon size={20} /> : social.platform}
+                    </ExternalLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
-          {contact.socials.length > 0 && (
-            <div className={styles.socials}>
-              {contact.socials.map((social) => {
-                const Icon = SOCIAL_ICONS[social.platform.toLowerCase()];
-                return (
-                  <ExternalLink
-                    href={social.url}
-                    key={social.platform}
-                    className={styles.social}
-                    aria-label={social.platform}
-                  >
-                    {Icon ? <Icon size={20} /> : social.platform}
-                  </ExternalLink>
-                );
-              })}
+          <nav aria-labelledby="footer-quick">
+            <p className={styles.colTitle} id="footer-quick">
+              Quick Links
+            </p>
+            <div className={styles.colLinks}>
+              {QUICK_LINKS.map(([href, label]) => (
+                <Link href={href} key={href}>
+                  {label}
+                </Link>
+              ))}
             </div>
-          )}
+          </nav>
+
+          <nav aria-labelledby="footer-event">
+            <p className={styles.colTitle} id="footer-event">
+              Event
+            </p>
+            <div className={styles.colLinks}>
+              {EVENT_LINKS.map(([href, label]) => (
+                <Link href={href} key={href}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+
+          <div>
+            <p className={styles.colTitle}>Stay Updated</p>
+            <p className={styles.communityText}>
+              {contact.communityUrl
+                ? 'Join our community channel to get the latest updates about the event.'
+                : 'Our official community channel will be announced soon — check back for updates.'}
+            </p>
+            {contact.communityUrl ? (
+              <ExternalLink href={contact.communityUrl} className={styles.communityButton}>
+                Join Community
+                <ArrowRightIcon size={16} />
+              </ExternalLink>
+            ) : (
+              <Link href="/contact" className={styles.communityButton}>
+                Contact Organizers
+                <ArrowRightIcon size={16} />
+              </Link>
+            )}
+          </div>
         </div>
 
         <div className={styles.divider} />
 
         <div className={styles.bottom}>
-          <p style={{ margin: 0 }}>
-            &copy; {new Date().getFullYear()} {event.chapterName}
+          <p>
+            &copy; {new Date().getFullYear()} {event.chapterName}. All rights reserved.
           </p>
-          <nav className={styles.links} aria-label="Footer">
-            <Link href="/registration">Register</Link>
-            <Link href="/schedule">Schedule</Link>
-            <Link href="/resources">Resources</Link>
-            <Link href="/faq">FAQ</Link>
-            <Link href="/contact">Contact</Link>
-            {contact.communityUrl && <ExternalLink href={contact.communityUrl}>Community</ExternalLink>}
-          </nav>
+          <p>Built by the {event.chapterName.replace(/\s*—.*$/, '')} team</p>
         </div>
       </div>
     </footer>

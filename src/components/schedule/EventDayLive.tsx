@@ -67,7 +67,7 @@ export function EventDayLive({ schedule, config }: { schedule: Session[]; config
           {isLive && <span className={styles.pulse} />}
           {isLive ? 'Live Event' : 'Not Live Yet'}
         </span>
-        <p className={styles.eventName}>{config.event.name}</p>
+        <h1 className={styles.eventName}>{config.event.name}</h1>
       </div>
 
       <section className={styles.now} aria-label="Current session">

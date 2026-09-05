@@ -153,7 +153,7 @@
 .featurePanel {
   display: grid;
   grid-template-columns: 1fr;
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
   border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.03);
@@ -241,8 +241,13 @@
   }
 }
 
+/* Inner-page heroes are shorter than the home hero, so the globe is capped —
+   at its native size it sets a ~620px row height and dwarfs the copy. */
 .visual {
   display: none;
+  max-width: 420px;
+  margin-inline: auto;
+  width: 100%;
 }
 
 @media (max-width: 560px) {

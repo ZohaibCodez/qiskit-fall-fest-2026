@@ -1,0 +1,109 @@
+.intro {
+  font-size: 15.5px;
+  color: var(--color-muted-fg);
+  margin: 0 0 var(--space-8);
+  max-width: 62ch;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+}
+
+/* Connector line down the number column, stopping at the last step. */
+.step::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 48px;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  z-index: 1;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease);
+}
+
+.step:hover .number {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-card));
+}
+
+.body {
+  padding-top: var(--space-2);
+  min-width: 0;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-2);
+}
+
+.description {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--color-muted-fg);
+  margin: 0;
+  max-width: 62ch;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  min-height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.link svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.link:hover svg {
+  transform: translateX(3px);
+}
+
+.promptWrap {
+  margin-top: var(--space-12);
+}

@@ -1,0 +1,28 @@
+{
+  "eligibility": [
+    "Students from any discipline — no quantum background required",
+    "Developers, researchers and educators interested in quantum computing",
+    "Community members curious about quantum technology"
+  ],
+  "requirements": [
+    {
+      "id": "req-laptop",
+      "icon": "laptop",
+      "title": "A laptop",
+      "description": "Recommended for the hands-on Qiskit workshop. Any OS with a modern browser works."
+    },
+    {
+      "id": "req-account",
+      "icon": "cloud",
+      "title": "IBM Quantum account",
+      "description": "Free to create at quantum.ibm.com — needed to run circuits on real hardware."
+    },
+    {
+      "id": "req-python",
+      "icon": "code",
+      "title": "Python & Qiskit (optional)",
+      "description": "Install locally, or use the browser-based lab if you'd rather not set anything up."
+    }
+  ],
+  "confirmation": "After registering through the official form you'll receive a confirmation email. Event-day joining details are shared closer to the date."
+}

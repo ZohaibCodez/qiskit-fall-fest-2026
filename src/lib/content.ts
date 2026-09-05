@@ -11,6 +11,8 @@ import announcementsJson from '@content/announcements.json';
 import highlightsJson from '@content/highlights.json';
 import aboutJson from '@content/about.json';
 import activitiesPageJson from '@content/activities-page.json';
+import registrationJson from '@content/registration.json';
+import beforeYouAttendJson from '@content/before-you-attend.json';
 
 import type {
   SiteConfig,
@@ -26,6 +28,8 @@ import type {
   Highlight,
   AboutContent,
   ActivitiesPageContent,
+  RegistrationContent,
+  BeforeYouAttendContent,
   ResourceVisibility,
 } from './types';
 import { validateContent } from './validateContent';
@@ -43,6 +47,8 @@ export const announcements = announcementsJson as Announcement[];
 export const highlights = highlightsJson as Highlight[];
 export const about = aboutJson as AboutContent;
 export const activitiesPage = activitiesPageJson as ActivitiesPageContent;
+export const registrationContent = registrationJson as RegistrationContent;
+export const beforeYouAttend = beforeYouAttendJson as BeforeYouAttendContent;
 
 // Runs once at module load. A dangling ID reference or invalid enum value
 // throws here, which fails `next build` — turning a content typo into a

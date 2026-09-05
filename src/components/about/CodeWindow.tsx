@@ -1,4 +1,7 @@
-import { Fragment } from 'react';
+'use client';
+
+import { Fragment, useState } from 'react';
+import { CopyIcon, CheckIcon } from '@/components/shared/Icons';
 import styles from './CodeWindow.module.css';
 
 /**
@@ -58,12 +61,30 @@ function highlightLine(line: string, lineKey: number) {
 }
 
 export function CodeWindow({ code, label = 'Qiskit example' }: { code: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      // Revert to the idle label after a beat (§28).
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard can be blocked (permissions, insecure context); the code is
+      // still selectable, so fail quietly rather than showing a false success.
+    }
+  };
+
   return (
     <div className={styles.window}>
-      <div className={styles.bar} aria-hidden="true">
-        <span className={`${styles.dot} ${styles.red}`} />
-        <span className={`${styles.dot} ${styles.yellow}`} />
-        <span className={`${styles.dot} ${styles.green}`} />
+      <div className={styles.bar}>
+        <span className={`${styles.dot} ${styles.red}`} aria-hidden="true" />
+        <span className={`${styles.dot} ${styles.yellow}`} aria-hidden="true" />
+        <span className={`${styles.dot} ${styles.green}`} aria-hidden="true" />
+        <button type="button" className={styles.copy} onClick={copy}>
+          {copied ? <CheckIcon size={14} /> : <CopyIcon size={14} />}
+          <span aria-live="polite">{copied ? 'Copied' : 'Copy'}</span>
+        </button>
       </div>
       <pre className={styles.code} aria-label={label}>
         <code>

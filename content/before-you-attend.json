@@ -1,0 +1,47 @@
+{
+  "intro": "A short checklist so you arrive ready. Most of it takes just a few minutes.",
+  "steps": [
+    {
+      "id": "bya-01",
+      "title": "Check your registration",
+      "description": "Make sure you've registered through the official form and received your confirmation email.",
+      "href": "/registration",
+      "linkLabel": "Go to registration"
+    },
+    {
+      "id": "bya-02",
+      "title": "Prepare your laptop",
+      "description": "Bring a laptop with a modern browser and a stable internet connection for the hands-on workshop.",
+      "href": null,
+      "linkLabel": null
+    },
+    {
+      "id": "bya-03",
+      "title": "Create the required accounts",
+      "description": "Sign up for a free IBM Quantum account so you can run circuits on real quantum hardware during the workshop.",
+      "href": "https://quantum.ibm.com/",
+      "linkLabel": "Create IBM Quantum account"
+    },
+    {
+      "id": "bya-04",
+      "title": "Install or set up Qiskit",
+      "description": "Install Python 3.9+ and Qiskit locally, or plan to use the browser-based lab if you'd rather not install anything.",
+      "href": "https://docs.quantum.ibm.com/guides/install-qiskit",
+      "linkLabel": "Installation guide"
+    },
+    {
+      "id": "bya-05",
+      "title": "Review the beginner resources",
+      "description": "Skim a few basics beforehand so the introductory sessions land better. No need to complete anything.",
+      "href": "/resources",
+      "linkLabel": "Browse resources"
+    },
+    {
+      "id": "bya-06",
+      "title": "Check event-day instructions",
+      "description": "Venue, timings and joining details are published as they're confirmed. Check back shortly before the event.",
+      "href": "/event-day",
+      "linkLabel": "Event-day info"
+    }
+  ]
+}

@@ -1,35 +1,85 @@
-.item {
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-3) 0;
-}
-
-.question {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 16px;
-  list-style: none;
+.list {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 44px;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.question::-webkit-details-marker {
-  display: none;
+.item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+  overflow: hidden;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease);
+}
+
+.item:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+}
+
+.itemOpen {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 56px;
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--color-fg);
+  cursor: pointer;
 }
 
 .icon {
-  transition: transform var(--motion-fast) var(--motion-ease);
   flex-shrink: 0;
+  color: var(--color-accent);
+  transition: transform var(--motion-base) var(--motion-ease);
 }
 
-.item[open] .icon {
-  transform: rotate(45deg);
+.itemOpen .icon {
+  transform: rotate(180deg);
+}
+
+/* Animating grid-template-rows 0fr → 1fr gives a real height transition
+   without measuring the content or hardcoding a max-height. */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows var(--motion-base) var(--motion-ease),
+    opacity var(--motion-base) var(--motion-ease);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.panelInner {
+  overflow: hidden;
 }
 
 .answer {
-  margin: var(--space-2) 0 0;
-  font-size: 15px;
-  color: var(--color-fg);
+  margin: 0;
+  padding: 0 var(--space-5) var(--space-5);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--color-muted-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .icon {
+    transition: none;
+  }
 }

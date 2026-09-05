@@ -213,6 +213,75 @@ export function StarIcon({ size = 22, className }: IconProps) {
   );
 }
 
+export function ChevronDownIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="m6 9.5 6 6 6-6" />
+    </svg>
+  );
+}
+
+export function ExternalLinkIcon({ size = 16, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M13.4 4.6h6v6M19.4 4.6 10 14M16.4 13.4v5a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h5" />
+    </svg>
+  );
+}
+
+export function MailIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="2.6" y="4.8" width="18.8" height="14.4" rx="2" />
+      <path d="m3.4 6.6 8.6 6.2 8.6-6.2" />
+    </svg>
+  );
+}
+
+export function BookIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M4 4.6h5.6A2.4 2.4 0 0 1 12 7v13a2 2 0 0 0-2-2H4V4.6ZM20 4.6h-5.6A2.4 2.4 0 0 0 12 7v13a2 2 0 0 1 2-2h6V4.6Z" />
+    </svg>
+  );
+}
+
+export function PlayIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m10 8.6 6 3.4-6 3.4V8.6Z" />
+    </svg>
+  );
+}
+
+export function ImageIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="3" y="4.6" width="18" height="14.8" rx="2" />
+      <circle cx="8.6" cy="9.8" r="1.6" />
+      <path d="m4 17 5-4.6 4 3.4 3-2.4 4 3.4" />
+    </svg>
+  );
+}
+
+export function CheckIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="m5 12.4 4.4 4.4L19 7.2" />
+    </svg>
+  );
+}
+
+export function CopyIcon({ size = 16, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="8.6" y="8.6" width="11.4" height="11.4" rx="1.8" />
+      <path d="M15.4 5.4v-.8a1.8 1.8 0 0 0-1.8-1.8H5a1.8 1.8 0 0 0-1.8 1.8v8.6a1.8 1.8 0 0 0 1.8 1.8h.8" />
+    </svg>
+  );
+}
+
 export function ClockIcon({ size = 18, className }: IconProps) {
   return (
     <svg {...base(size)} className={className}>

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { IconTile, type TileTone } from './IconTile';
-import { ArrowRightIcon } from './Icons';
+import { ArrowRightIcon, ExternalLinkIcon } from './Icons';
+import { ExternalLink } from './ExternalLink';
 import styles from './PromptBand.module.css';
 
 /** Light invitation band, e.g. "Want to be a speaker?" → Contact Us. */
@@ -29,10 +30,18 @@ export function PromptBand({
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{text}</p>
       </div>
-      <Link href={actionHref} className={styles.action}>
-        {actionLabel}
-        <ArrowRightIcon size={16} />
-      </Link>
+      {/* An off-site destination must open safely and be signalled as external (§44). */}
+      {actionHref.startsWith('http') ? (
+        <ExternalLink href={actionHref} className={styles.action}>
+          {actionLabel}
+          <ExternalLinkIcon size={15} />
+        </ExternalLink>
+      ) : (
+        <Link href={actionHref} className={styles.action}>
+          {actionLabel}
+          <ArrowRightIcon size={16} />
+        </Link>
+      )}
     </div>
   );
 }

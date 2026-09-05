@@ -151,6 +151,19 @@ export interface Activity {
   sessionId: string | null;
 }
 
+/** Page copy for /registration (see content/registration.json). */
+export interface RegistrationContent {
+  eligibility: string[];
+  requirements: Array<{ id: string; icon: HighlightIcon; title: string; description: string }>;
+  confirmation: string;
+}
+
+/** Numbered preparation checklist for /before-you-attend. */
+export interface BeforeYouAttendContent {
+  intro: string;
+  steps: Array<{ id: string; title: string; description: string; href: string | null; linkLabel: string | null }>;
+}
+
 /** Page copy for /activities (see content/activities-page.json). */
 export interface ActivitiesPageContent {
   hero: {

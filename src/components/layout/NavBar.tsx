@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { RegisterButton } from '@/components/shared/RegisterButton';
@@ -32,7 +32,36 @@ function BrandMark() {
 
 export function NavBar({ eventName }: { eventName: string }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  // Header compresses slightly once the user leaves the top of the page (§9).
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Escape closes the mobile menu, and an open menu locks page scroll (§10).
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  // A route change should never leave the menu hanging open.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
@@ -49,7 +78,7 @@ export function NavBar({ eventName }: { eventName: string }) {
   );
 
   return (
-    <header className={styles.bar}>
+    <header className={`${styles.bar} ${scrolled ? styles.barScrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.brand}>
           <BrandMark />
@@ -87,6 +116,7 @@ export function NavBar({ eventName }: { eventName: string }) {
       {open && (
         <nav id="mobile-nav" className={`container ${styles.mobilePanel}`} aria-label="Primary (mobile)">
           {NAV_LINKS.map(([href, label]) => renderLink(href, label, () => setOpen(false)))}
+          <RegisterButton onDark className={styles.mobileCta} />
         </nav>
       )}
     </header>

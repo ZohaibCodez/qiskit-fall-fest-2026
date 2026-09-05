@@ -1,0 +1,267 @@
+/* Event-day is a functional control screen: "Now" dominates, everything else
+   is secondary (§52). Dark surface so it reads well in a dim venue. */
+.screen {
+  background: #070b18;
+  color: #e2e8f0;
+  min-height: 70vh;
+  padding: clamp(20px, 3vw, 36px) 0 clamp(40px, 5vw, 64px);
+}
+
+.statusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: rgba(22, 163, 74, 0.16);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+}
+
+.offlineTag {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: rgba(203, 213, 225, 0.9);
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2.2s ease-out infinite;
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 7px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}
+
+.eventName {
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.95);
+  margin: 0 0 var(--space-3);
+}
+
+/* ---------- NOW (dominant) ---------- */
+
+.now {
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(80% 140% at 12% 0%, rgba(22, 163, 74, 0.18), transparent 62%),
+    rgba(255, 255, 255, 0.03);
+  padding: clamp(20px, 3vw, 32px);
+  margin-bottom: var(--space-5);
+}
+
+.nowTitle {
+  font-size: clamp(26px, 4.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #f8fafc;
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+.nowMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: clamp(15px, 1.8vw, 17px);
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.metaTime {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  color: rgba(148, 163, 184, 0.95);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ---------- NEXT ---------- */
+
+.next {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+  padding: clamp(18px, 2.4vw, 26px);
+  margin-bottom: var(--space-8);
+}
+
+.nextTitle {
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #f8fafc;
+  margin: 0 0 var(--space-3);
+}
+
+.startsIn {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 14px;
+  color: #7dd3fc;
+  margin: var(--space-3) 0 0;
+}
+
+/* ---------- Panels ---------- */
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.panels > * {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .panels {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.panel {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+  padding: var(--space-5);
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 var(--space-4);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.announcement {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(148, 163, 184, 0.08);
+  border-left: 3px solid rgba(125, 211, 252, 0.7);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Urgent uses a stronger accent, reserved for genuine issues (§56). */
+.urgent {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.announcementTime {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.9);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Large tap targets — attendees use this while walking around (§53). */
+.linkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.linkItem:hover {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(125, 211, 252, 0.55);
+}
+
+.linkPending {
+  color: rgba(148, 163, 184, 0.85);
+  font-weight: 500;
+}
+
+.scheduleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  min-height: 44px;
+  font-weight: 600;
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.scheduleLink svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.scheduleLink:hover svg {
+  transform: translateX(3px);
+}

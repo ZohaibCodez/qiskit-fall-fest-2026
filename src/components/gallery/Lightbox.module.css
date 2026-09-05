@@ -1,0 +1,116 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(4px);
+  animation: fade-in 180ms var(--motion-ease);
+}
+
+.dialog {
+  position: relative;
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.caption {
+  color: rgba(226, 232, 240, 0.9);
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.counter {
+  font-family: var(--font-plex-mono, var(--font-mono));
+  font-size: 12.5px;
+  color: rgba(148, 163, 184, 0.9);
+  text-align: center;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.7);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+
+.control:hover {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.prev {
+  left: calc(var(--space-4) * -1);
+}
+
+.next {
+  right: calc(var(--space-4) * -1);
+}
+
+.close {
+  position: absolute;
+  top: calc(var(--space-6) * -1);
+  right: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.7);
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .prev {
+    left: var(--space-2);
+  }
+  .next {
+    right: var(--space-2);
+  }
+}

@@ -1,8 +1,9 @@
 import { gallery } from '@/lib/content';
+import { pageMetadata } from '@/lib/seo';
+import { PageHero } from '@/components/shared/PageHero';
 import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 import { GalleryHighlights } from '@/components/gallery/GalleryHighlights';
 import { EmptyState } from '@/components/shared/EmptyState';
-import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata(
   'Gallery',
@@ -11,16 +12,29 @@ export const metadata = pageMetadata(
 );
 
 export default function GalleryPage() {
+  const hasPhotos = gallery.some((photo) => photo.status === 'available' && photo.src);
+
   return (
-    <div className="container page-wrap">
-      <h1>Gallery &amp; Event Highlights</h1>
-      <p>Photos from Qiskit Fall Fest 2026 — placeholders until real event photos are added.</p>
-      {gallery.length === 0 ? (
-        <EmptyState message="Photos coming soon." />
-      ) : (
-        <GalleryGrid photos={gallery} />
-      )}
-      <GalleryHighlights />
-    </div>
+    <>
+      <PageHero
+        eyebrow="Event Photos"
+        title="Moments from"
+        titleAccent="the event."
+        lede={
+          hasPhotos
+            ? 'A look back at the talks, workshops and people that made the event.'
+            : 'Photos from Qiskit Fall Fest 2026 will appear here once the event has taken place.'
+        }
+      />
+
+      <div className="container page-wrap">
+        {gallery.length === 0 ? (
+          <EmptyState message="Event photos will be added after the event." />
+        ) : (
+          <GalleryGrid photos={gallery} />
+        )}
+        <GalleryHighlights />
+      </div>
+    </>
   );
 }

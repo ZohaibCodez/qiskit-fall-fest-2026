@@ -1,0 +1,63 @@
+/* Light invitation band — a softer counterpart to the dark CtaBand, for
+   secondary asks ("want to speak?", "want to volunteer?"). */
+.band {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+  flex-wrap: wrap;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+  background: linear-gradient(150deg, #f5f3ff 0%, #eef4ff 100%);
+}
+
+.body {
+  flex: 1;
+  min-width: 240px;
+}
+
+.title {
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.015em;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-muted-fg);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-accent);
+  background: var(--color-card);
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.action:hover {
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-card));
+  transform: translateY(-1px);
+}
+
+.action svg {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.action:hover svg {
+  transform: translateX(3px);
+}

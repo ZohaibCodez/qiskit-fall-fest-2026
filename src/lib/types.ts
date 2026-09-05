@@ -90,12 +90,18 @@ export interface Session {
   };
 }
 
+/** Drives the Industry / Researchers style filters on the speakers page. */
+export type SpeakerCategory = 'researcher' | 'industry' | 'educator' | 'developer';
+
 export interface Speaker {
   id: string;
   status: ConfirmationStatus;
   name: string;
   designation: string;
   organization: string;
+  /** Country of the speaker's organization — powers the "Countries" stat. */
+  country: string | null;
+  category: SpeakerCategory | null;
   photo: string | null;
   bio: string;
   sessionIds: string[];

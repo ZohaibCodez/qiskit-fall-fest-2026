@@ -1,35 +1,54 @@
 [
   {
-    "id": "spk-tba-1",
+    "id": "spk-tba-keynote",
     "status": "tba",
     "name": "Speaker TBA",
     "designation": "",
     "organization": "",
-    "photo": null,
-    "bio": "",
-    "sessionIds": ["sess-001"],
-    "socials": []
-  },
-  {
-    "id": "spk-tba-2",
-    "status": "tba",
-    "name": "Speaker TBA",
-    "designation": "",
-    "organization": "",
+    "country": null,
+    "category": null,
     "photo": null,
     "bio": "",
     "sessionIds": ["sess-002"],
     "socials": []
   },
   {
-    "id": "spk-tba-3",
+    "id": "spk-tba-talk",
     "status": "tba",
     "name": "Speaker TBA",
     "designation": "",
     "organization": "",
+    "country": null,
+    "category": null,
     "photo": null,
     "bio": "",
     "sessionIds": ["sess-003"],
+    "socials": []
+  },
+  {
+    "id": "spk-tba-workshop",
+    "status": "tba",
+    "name": "Speaker TBA",
+    "designation": "",
+    "organization": "",
+    "country": null,
+    "category": null,
+    "photo": null,
+    "bio": "",
+    "sessionIds": ["sess-004"],
+    "socials": []
+  },
+  {
+    "id": "spk-tba-panel",
+    "status": "tba",
+    "name": "Speaker TBA",
+    "designation": "",
+    "organization": "",
+    "country": null,
+    "category": null,
+    "photo": null,
+    "bio": "",
+    "sessionIds": ["sess-006"],
     "socials": []
   }
 ]

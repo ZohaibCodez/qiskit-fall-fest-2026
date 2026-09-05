@@ -1,23 +1,9 @@
 import Link from 'next/link';
 import { ExternalLink } from '@/components/shared/ExternalLink';
 import { siteConfig } from '@/lib/content';
-import {
-  GithubIcon,
-  LinkedinIcon,
-  XIcon,
-  YoutubeIcon,
-  ArrowRightIcon,
-} from '@/components/shared/Icons';
+import { ArrowRightIcon } from '@/components/shared/Icons';
+import { SOCIAL_ICONS } from '@/components/shared/socialIcons';
 import styles from './Footer.module.css';
-
-/** Known platforms get their real mark; anything else falls back to a text link. */
-const SOCIAL_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
-  github: GithubIcon,
-  linkedin: LinkedinIcon,
-  x: XIcon,
-  twitter: XIcon,
-  youtube: YoutubeIcon,
-};
 
 const QUICK_LINKS: Array<[string, string]> = [
   ['/schedule', 'Schedule'],

@@ -15,6 +15,7 @@ import type {
   ActivityStatus,
   ResourceCategory,
   GalleryCategory,
+  SpeakerCategory,
 } from './types';
 
 const SESSION_TYPES: SessionType[] = [
@@ -88,8 +89,16 @@ export function validateContent(data: {
     });
   });
 
+  const SPEAKER_CATEGORIES: SpeakerCategory[] = ['researcher', 'industry', 'educator', 'developer'];
+
   data.speakers.forEach((speaker, i) => {
     checkEnum(speaker.status, CONFIRMATION_STATUSES, `speakers[${i}] (${speaker.id}).status`);
+    if (speaker.category !== null) {
+      checkEnum(speaker.category, SPEAKER_CATEGORIES, `speakers[${i}] (${speaker.id}).category`);
+    }
+    if (speaker.status === 'confirmed' && !speaker.name.trim()) {
+      fail(`speakers[${i}] (${speaker.id}) is marked confirmed but has no name`);
+    }
     speaker.sessionIds.forEach((id) => {
       if (!sessionIds.has(id)) {
         fail(`speakers[${i}] (${speaker.id}) references unknown sessionId "${id}"`);

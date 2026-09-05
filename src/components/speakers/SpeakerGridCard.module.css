@@ -1,0 +1,153 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+}
+
+/* ---------- Media ---------- */
+
+.media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-muted);
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.card:hover .photo {
+  transform: scale(1.04);
+}
+
+/* TBA slots get a centred silhouette rather than a stretched placeholder. */
+.mediaTba {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background: var(--color-card);
+}
+
+.badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px var(--space-3);
+  border-radius: var(--radius-sm);
+  z-index: 1;
+}
+
+.badgeTba {
+  background: var(--color-muted);
+  color: var(--color-muted-fg);
+  border: 1px solid var(--color-border);
+}
+
+/* ---------- Body ---------- */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.designation {
+  font-size: 13px;
+  color: var(--color-muted-fg);
+  margin: var(--space-2) 0 0;
+  line-height: 1.45;
+}
+
+.organization {
+  font-size: 13px;
+  color: var(--color-muted-fg);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.bio {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-muted-fg);
+  margin: var(--space-3) 0 0;
+}
+
+.sessions {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.sessionsLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2);
+}
+
+.sessionList {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-muted-fg);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--color-muted);
+  color: var(--color-accent);
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.social:hover {
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-muted));
+  transform: translateY(-2px);
+}

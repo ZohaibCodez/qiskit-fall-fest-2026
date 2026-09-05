@@ -11,13 +11,17 @@ export function PageHero({
   lede,
   visual,
   facts,
+  stats,
 }: {
   eyebrow: string;
   title: string;
   titleAccent?: string;
   lede?: string;
   visual?: ReactNode;
+  /** Inline meta row (date / location / format). */
   facts?: HeroFact[];
+  /** Bordered panel variant, for counts like speakers / sessions / countries. */
+  stats?: HeroFact[];
 }) {
   return (
     <section className={styles.hero}>
@@ -49,6 +53,20 @@ export function PageHero({
                 </li>
               ))}
             </ul>
+          )}
+
+          {stats && stats.length > 0 && (
+            <div className={`${styles.statsPanel} rise-in`} style={{ '--delay': '240ms' } as React.CSSProperties}>
+              {stats.map((stat) => (
+                <div className={styles.stat} key={stat.label}>
+                  <span className={styles.factIcon}>{stat.icon}</span>
+                  <span className={styles.factText}>
+                    <span className={styles.factLabel}>{stat.label}</span>
+                    <span className={styles.factValue}>{stat.value}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
           )}
         </div>
 
